@@ -15,4 +15,8 @@
 
 
 
+
+void ft_md5(char *str_to_hash);
+
+
 #endif

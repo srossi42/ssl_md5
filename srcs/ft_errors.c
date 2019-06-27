@@ -53,7 +53,7 @@ void			ft_error(t_info *info, char *argv)
     p = info;
 	while (len >= 0 && argv[len] != '/')
 		len--;
-	ft_dprintf(2, "ft_ls: %s: %s\n", &argv[len + 1], strerror(errno));
+	ft_dprintf(2, "ft_ssl: %s: %s\n", &argv[len + 1], strerror(errno));
 	errno = 0;
 }
 
@@ -65,9 +65,9 @@ void			ft_errno_error(t_info *info, char *argv)
 		errno = 0;
 }
 
-void			ft_error_option(char *option)
+void			ft_error_option(char option)
 {
-	ft_printf("ft_ls: illegal option -- %c\n", option);
+	ft_printf("ft_ssl: illegal option -- %c\n", option);
 	ft_print_usage();
 	exit(EXIT_FAILURE);
 }

@@ -1,0 +1,10 @@
+//
+// Created by Savinien ROSSI on 2019-06-21.
+//
+
+#include "../includes/ft_ssl.h"
+#include "../includes/ft_md5.h"
+
+void ft_md5(char *str_to_hash){
+    ft_printf("ft_md5\n");
+}

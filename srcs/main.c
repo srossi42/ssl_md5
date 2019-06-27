@@ -11,109 +11,158 @@
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
-#include "ft_md5.h"
 
-int ft_check_command(char *command){
+int ft_set_functions(t_ptrs *ptrs, int *argc, char **argv){
+    int i;
 
-    if (ft_strcmp(command, "md5") == 0){
-        ft_printf("Command is OK: %s\n", command);
-        return (0);
+    t_ptrs      tab_ptrs[] =
+            {
+                    {"md5", &ft_md5, &ft_parse_opts},
+                    {"sha256", &ft_sha256, &ft_parse_opts},
+            };
+
+    i = 0;
+    while(i < NB_FUNCTIONS){
+        //ft_printf("%d\n", i);
+        //ft_printf("cmd dans tab : %s\n", tab_ptrs[i].cmd);
+        //ft_printf("argv[1] : %s\n", argv[1]);
+        if (ft_strcmp(tab_ptrs[i].cmd, argv[1]) == 0) {
+            ft_printf("found\n");
+            ptrs->cmd = tab_ptrs[i].cmd;
+            ptrs->ft_hash = tab_ptrs[i].ft_hash;
+            ptrs->ft_parse = tab_ptrs[i].ft_parse;
+            return 1;
+        }
+        i++;
     }
-
-    ft_printf("Wrong command: %s\n", command);
-    return (-1);
-    //Check command and set command to info
+    //ft_printf("liste des fonctions (usage bis)\n");
+    return 0;
 }
 
-//void ft_get_options(int argc, char **argv){
-//    int i;
-//
-//    i = 1;
-//    while (i < argc && argv[i][0] == '-'){
-//        ft_printf("Option : %s\n", argv[i]);
-//        //deconstruire pour avoir plusieurs options en une fois
-//        i++;
-//    }
-//}
 
-void ft_get_command_args(char *argv, t_info *info){
-//    if (info->i == argc){
-//        ft_printf("Pas de fichier ou de string, lire entree clavier\n");
-//    }
-    ft_printf("argv recu: %s", argv);
+void ft_parse_opts(t_info *info, int argc, char **argv){
+    ft_printf("ft_parse_opts\n");
+    ft_printf("arg en cours : %s\n",   argv[info->current_arg]);
+    //ft_printf("info options before : %x\n", info->options);
     if (info->options & OPT_STRING){
-        ft_printf("L'argument doit etre une string car option -s\n");
-    }
-    else{
-        ft_printf("L'argument doit etre un fichier\n");
-        ft_printf("Essayer d'ouvrir le fichier\n");
+        //si option 's' est déjà active on hash l'argument courant qui doit etre considéré comme une str(si existe)
+        ft_printf("on hash la string\n");
+        //on désactive l'option
+        info->options = info->options ^ OPT_STRING;
     }
 
+    if (ft_strlen(argv[info->current_arg]) == 2 && argv[info->current_arg][0] == '-' &&
+        ft_is_valid_option(argv[info->current_arg][1], OPTS_MD5_SHA256)){
+        ft_printf("%c is an option\n", argv[info->current_arg][1]);
+        /*if (info->options & OPT_STRING){
+            //si option 's' est déjà active on hash l'argument suivant qui doit etre considéré comme une str(si existe)
+            ft_printf("on hash la string\n");
+            //on désactive l'option
+            info->options = info->options ^ OPT_STRING;
+        }
+        else {*/
+            //l'option n'est pas activée donc on la set (s ou p ou q ou r)
+            //if (ft_is_valid_option(argv[info->current_arg][1], OPTS_MD5_SHA256)) {
+                //ft_printf("on set option si c'est une option\n");
+                ft_set_option(info, argv[info->current_arg][1]);
+            //}
+        //}
+    }
+    else if (ft_strlen(argv[info->current_arg]) == 2 && argv[info->current_arg][0] == '-'){
+        
+        ft_print_usage_option(info, argv[info->current_arg][1]);
+
+    }
+
+    else{
+        //on est pas sur une option (ne commence pas par '-' ou bien > à 2 char)
+        ft_printf("on ouvre le fichier et on le parse pour le hasher\n");
+    }
+    //ft_printf("info options after : %x\n", info->options);
+}
+
+
+
+
+void ft_print_info(t_info *info){
+    ft_printf("--------------\n");
+    if (info->options)
+        ft_printf("Options : %c\n", info->options);
+    if (info->filename_to_hash)
+        ft_printf("Filename : %s\n", info->filename_to_hash);
+    if (info->string_to_hash)
+        ft_printf("Str to hash : %s\n", info->string_to_hash);
+    if (info->hash)
+        ft_printf("Hash : %s\n", info->hash);
+    ft_printf("Current arg : %i\n--------------\n", info->current_arg);
+    if (info->ready_to_hash)
+        ft_printf("ready_to_hash : %b", info->ready_to_hash);
+}
+
+/*
+void ft_read_from_file(int fd){
+    char        buffer[BUFFER_SIZE];
+    char        *stdin;
+
+    stdin = ft_strnew(1);
+    if (fd == 1){
+
+        while(read(STDIN_FILENO, buffer, BUFFER_SIZE) > 0)
+        {
+            ft_strcat(stdin, buffer);
+            ft_printf("string : %s.\n", buffer);
+            ft_printf("stdin : %s.\n", stdin);
+        }
+    }
+
+}
+*/
+
+void ft_reinit_info(t_info *info){
+    //ft_printf("Reinit function\n");
+    if (info->filename_to_hash)
+        ft_strdel(&info->filename_to_hash);
+    if (info->string_to_hash)
+        ft_strdel(&info->string_to_hash);
+    if (info->hash)
+        ft_strdel(&info->hash);
 }
 
 int	main(int argc, char **argv)
 {
-	t_info	info;
-	char	*tab[argc];
-	int i;
 
-    i = 0;
-	ft_bzero(&info, sizeof(t_info));
-	ft_bzero(&tab, sizeof(tab));
+    t_info      info;
+    t_ptrs      hash_ptrs;
 
-	if (argc == 1 || ft_check_command(argv[1]) != 0)
+    ft_bzero(&info, sizeof(t_info));
+    ft_print_info(&info);
+    info.current_arg += 2;
+    ft_print_info(&info);
+	if (argc == 1)
 		    ft_print_usage();
-	else
-	{
-        if (argc > 2){
-            while (i < argc){
-                ft_printf("%s\n", argv[i]);
+    else if (ft_set_functions(&hash_ptrs, &argc, argv)){
+        //ft_printf("algo : %s\n", hash_ptrs.cmd);
+        info.algo_name = ft_strdup(hash_ptrs.cmd);
 
-                if (info.options & OPT_STRING){
-                    ft_printf("string : %s\n", argv[i]);
-                    info.options = info.options ^ OPT_STRING;
-                }
-                if (argv[i][0] == '-'){
-                    if (ft_strlen(argv[i]) == 2)
-                        ft_get_options(argv[i][1], &info);
-                    else
-                        ft_error_option()
-                }
+        while (info.current_arg < argc){
 
+            hash_ptrs.ft_parse(&info, argc, argv);
 
-//                if (ft_strcmp(argv[i], "-s") == 0){
-//                    info.options = info.options | OPT_STRING;
-//                }
-
-                i++;
+            //a suppr
+            info.string_to_hash = ft_strdup("test str to hash");
+            //
+            if (info.string_to_hash){
+                hash_ptrs.ft_hash(info.string_to_hash);
+                //a suppr
+                info.hash = ft_strdup("aerfei2oi43adsjhfe23ghj3ds");
+                //
+                ft_print_hash(&info);
             }
-
-//                ft_get_command_args(argv[argc - 1], &info);
-            //si -s il faut une string
-            //sinon : si element
+            ft_reinit_info(&info);
+            info.current_arg++;
         }
-
-
-
-
-//	    while (++i < argc){
-//            if (argv[i][0] == '-')
-//                ft_printf("option : %s\n", argv[i]);
-//	        else
-//	            ft_printf("arg : %s\n", argv[i]);
-//
-//	    }
-
-//		info.f_error = ft_check_argv_all(argc, &argv[info.index_i]);
-//		while (info.index_i < argc && argv[info.index_i][0] == '-')
-//			ft_get_options(argv[info.index_i++], &info);
-//		if (info.index_i == argc)
-//			ft_list_current_dir(&info, argv);
-//		else
-//			ft_list_dirs(&info, argc, argv, tab);
-	}
-	//ft_del_char_tab(tab);
-	//ft_print_buff(info.buff);
-	//ft_strdel(&info.full_path);
-	return (0);
+    }
+    //ft_print_info(&info);
+    ft_free_info(&info);
+    return (0);
 }

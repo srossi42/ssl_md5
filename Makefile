@@ -1,6 +1,8 @@
 # COMPILATION
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror
+
 
 DEFRULE = all
 #BINARY
@@ -16,12 +18,12 @@ INC_PATH = ./includes/ $(LIB_PATH)includes/
 
 # SOURCES
 SRC_NAME =	main.c \
-            ft_check_argv.c \
-			ft_get_options.c \
-			ft_errors.c \
-			ft_argv_sort.c \
-			ft_print_usage.c \
-			ft_init.c \
+            md5.c \
+            sha256.c \
+            ft_free.c \
+            ft_options.c \
+            ft_print.c \
+            ft_print_usage.c \
 
 
 # OBJECTS
