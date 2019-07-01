@@ -55,7 +55,10 @@ typedef struct	    s_ptrs
     t_parse_f		ft_parse;
 }				    t_ptrs;
 
-
+/* UINT2 définit un mot de deux octets. */
+typedef unsigned short int UINT2;
+/* UINT4 définit un mot de quatre octets. */
+typedef unsigned long int UINT4;
 
 
 void                ft_md5(char *str_to_hash);
@@ -71,19 +74,12 @@ void                ft_free_info(t_info *info);
 void                ft_print_hash(t_info *info);
 
 
-//typedef int			(*t_node_cmp)(t_node *current_node, t_node *child);
-//typedef void		(*t_node_action)(t_node *node, t_info *info);
-//int					ft_check_argv(char *argv, int option);
-//int					ft_check_argv_all(int argc, char **argv);
+
 //void				ft_error(t_info *info, char *path);
 //void				ft_error_option(char option);
 //void				ft_errno_error(t_info *info, char *path);
-//int					ft_check_errors_2(t_info *info, char *path, struct stat *st, DIR *dir);
+//int				ft_check_errors_2(t_info *info, char *path, struct stat *st, DIR *dir);
 //void				ft_check_errors(t_info *info, DIR *dir, char *path);
-//void	            ft_argv_sort(char *argv[], int size);
-//void				ft_get_options(char option, t_info *info);
-//void				ft_print_usage();
-
 
 
 #endif

@@ -42,11 +42,13 @@ int ft_set_functions(t_ptrs *ptrs, int *argc, char **argv){
 
 void ft_parse_opts(t_info *info, int argc, char **argv){
     ft_printf("ft_parse_opts\n");
-    ft_printf("arg en cours : %s\n",   argv[info->current_arg]);
+    //ft_printf("arg en cours : %s\n",   argv[info->current_arg]);
     //ft_printf("info options before : %x\n", info->options);
     if (info->options & OPT_STRING){
         //si option 's' est déjà active on hash l'argument courant qui doit etre considéré comme une str(si existe)
-        ft_printf("on hash la string\n");
+        //on ajouter la string à hasher (apres l'avoir paddé)
+        info->string_to_hash = ft_strdup(argv[info->current_arg]);
+
         //on désactive l'option
         info->options = info->options ^ OPT_STRING;
     }
@@ -54,22 +56,10 @@ void ft_parse_opts(t_info *info, int argc, char **argv){
     if (ft_strlen(argv[info->current_arg]) == 2 && argv[info->current_arg][0] == '-' &&
         ft_is_valid_option(argv[info->current_arg][1], OPTS_MD5_SHA256)){
         ft_printf("%c is an option\n", argv[info->current_arg][1]);
-        /*if (info->options & OPT_STRING){
-            //si option 's' est déjà active on hash l'argument suivant qui doit etre considéré comme une str(si existe)
-            ft_printf("on hash la string\n");
-            //on désactive l'option
-            info->options = info->options ^ OPT_STRING;
-        }
-        else {*/
-            //l'option n'est pas activée donc on la set (s ou p ou q ou r)
-            //if (ft_is_valid_option(argv[info->current_arg][1], OPTS_MD5_SHA256)) {
-                //ft_printf("on set option si c'est une option\n");
-                ft_set_option(info, argv[info->current_arg][1]);
-            //}
-        //}
+        ft_set_option(info, argv[info->current_arg][1]);
     }
     else if (ft_strlen(argv[info->current_arg]) == 2 && argv[info->current_arg][0] == '-'){
-        
+
         ft_print_usage_option(info, argv[info->current_arg][1]);
 
     }
@@ -149,7 +139,7 @@ int	main(int argc, char **argv)
             hash_ptrs.ft_parse(&info, argc, argv);
 
             //a suppr
-            info.string_to_hash = ft_strdup("test str to hash");
+            //info.string_to_hash = ft_strdup("test str to hash");
             //
             if (info.string_to_hash){
                 hash_ptrs.ft_hash(info.string_to_hash);
