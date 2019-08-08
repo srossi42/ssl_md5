@@ -145,7 +145,7 @@ int	main(int argc, char **argv)
                 hash_ptrs.ft_hash(info.string_to_hash);
                 //a suppr
                 //sha 256
-                info.hash = ft_strdup("ab530a13e45914982b79f9b7e3fba994cfd1f3fb22f71cea1afbf02b460c6d1d");
+                info.hash = ft_strdup("97d035e32036a670058f2be4e008a7c56355489750a5da6f2af342db4a968e99");
                 //
                 ft_print_hash(&info);
             }

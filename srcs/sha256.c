@@ -34,11 +34,11 @@ uint32_t    ft_bsig1(uint32_t x){
 }
 
 uint32_t    ft_ssig0(uint32_t x){
-    return ft_rotate_right(x, 7) ^ ft_rotate_right(x, 18) ^ ft_rotate_right(x, 3);
+    return ft_rotate_right(x, 7) ^ ft_rotate_right(x, 18) ^ (x >> 3);
 }
 
 uint32_t    ft_ssig1(uint32_t x){
-    return ft_rotate_right(x, 17) ^ ft_rotate_right(x, 19) ^ ft_rotate_right(x, 10);
+    return ft_rotate_right(x, 17) ^ ft_rotate_right(x, 19) ^ (x >> 10);
 }
 
 
@@ -72,14 +72,14 @@ void ft_sha256_free(t_sha256_struct *sha256_struct) {
 }
 
 void ft_sha256_padding(t_sha256_struct *sha256_struct) {
-    unsigned int    bitlen;
+    size_t          bitlen;
     int             msg_len;
     int             padding;
 
     padding = 0;
     msg_len = sha256_struct->input_len;
-    bitlen = sha256_struct->input_len<<3;
-    sha256_struct->count[1] = sha256_struct->input_len >> 29;
+    bitlen = sha256_struct->input_len << 3;
+    sha256_struct->count[0] = sha256_struct->input_len >> 29;
     sha256_struct->count[0] = bitlen;
     while (((sha256_struct->input_len + padding + 1) * 8 - 448) % 512 != 0)
         padding++;
@@ -89,7 +89,14 @@ void ft_sha256_padding(t_sha256_struct *sha256_struct) {
     sha256_struct->data[msg_len] = (unsigned char) 128;
     while (++msg_len <= sha256_struct->total_len)
         sha256_struct->data[msg_len] = 0;
-    ft_memcpy(sha256_struct->data + sha256_struct->total_len, &bitlen, 4);
+    sha256_struct->data[sha256_struct->total_len] = (bitlen >> 56) & 0xFF;
+    sha256_struct->data[sha256_struct->total_len + 1] = (bitlen >> 48) & 0xFF;
+    sha256_struct->data[sha256_struct->total_len + 2] = (bitlen >> 40) & 0xFF;
+    sha256_struct->data[sha256_struct->total_len + 3] = (bitlen >> 32) & 0xFF;
+    sha256_struct->data[sha256_struct->total_len + 4] = (bitlen >> 24) & 0xFF;
+    sha256_struct->data[sha256_struct->total_len + 5] = (bitlen >> 16) & 0xFF;
+    sha256_struct->data[sha256_struct->total_len + 6] = (bitlen >> 8) & 0xFF;
+    sha256_struct->data[sha256_struct->total_len + 7] = (bitlen) & 0xFF;
 }
 
 void ft_init_abcdefgh(t_sha256_struct *sha256_struct){
@@ -103,11 +110,11 @@ void ft_init_abcdefgh(t_sha256_struct *sha256_struct){
     SHA256_H = SHA256_H7;
 }
 
-void ft_update_abcdefgh(t_sha256_struct *sha256_struct, sha256_byte_t word[4], int j){
+void ft_update_abcdefgh(t_sha256_struct *sha256_struct, sha256_word_t w, uint32_t k){
     uint32_t    t1;
     uint32_t    t2;
 
-    t1 = SHA256_H + ft_bsig1(SHA256_E) + ft_ch(SHA256_E, SHA256_F, SHA256_G) + g_sha256_k[j] + word[j];
+    t1 = SHA256_H + ft_bsig1(SHA256_E) + ft_ch(SHA256_E, SHA256_F, SHA256_G) + k + w;
     t2 = ft_bsig0(SHA256_A) + ft_maj(SHA256_A, SHA256_B, SHA256_C);
     SHA256_H = SHA256_G;
     SHA256_G = SHA256_F;
@@ -125,42 +132,56 @@ void ft_update_hx(t_sha256_struct *sha256_struct){
     SHA256_H1 += SHA256_B;
     SHA256_H2 += SHA256_C;
     SHA256_H3 += SHA256_D;
-}
-
-void ft_get_fg(t_sha256_struct *sha256_struct, int j){
-    if (j < 16) {
-        SHA256_F = (SHA256_B & SHA256_C) | ((~SHA256_B) & SHA256_D);
-        SHA256_G = j;
-    } else if (j < 32) {
-        SHA256_F = (SHA256_D & SHA256_B) | ((~SHA256_D) & SHA256_C);
-        SHA256_G = (5 * j + 1) % 16;
-    } else if (j < 48) {
-        SHA256_F = SHA256_B ^ SHA256_C ^ SHA256_D;
-        SHA256_G = (3 * j + 5) % 16;
-    } else if (j < 64) {
-        SHA256_F = SHA256_C ^ (SHA256_B | (~SHA256_D));
-        SHA256_G = (7 * j) % 16;
-    }
+    SHA256_H4 += SHA256_E;
+    SHA256_H5 += SHA256_F;
+    SHA256_H6 += SHA256_G;
+    SHA256_H7 += SHA256_H;
 }
 
 void ft_sha256_encode(t_sha256_struct *sha256_struct) {
-    int         i;
-    int         j;
-    sha256_byte_t  word[4];
-    sha256_byte_t  words[64];
+    int             i;
+    int             j;
+    int             t;
+    sha256_word_t   w[64];
+    sha256_byte_t   words[64];
 
-    ft_bzero(word, 4);
+    ft_bzero(w, 64 * sizeof(sha256_word_t));
     i = 0;
+    j = 0;
     sha256_struct->total_len += 8;
     while (i < sha256_struct->total_len - 1) {
         ft_bzero(words, 64);
         ft_memcpy(words, sha256_struct->data + i, 64);
+//        printf("---------------------\n");
+//        t = 0;
+//        while (t < 64) {
+//            printf("words[%d] : %x\n", t, words[t]);
+//            t++;
+//        }
         ft_init_abcdefgh(sha256_struct);
-        j = 0;
-        while (j < 64) {
-            ft_get_fg(sha256_struct, j);
-            ft_memcpy(word, words + SHA256_G * 4, 4);
-            ft_update_abcdefgh(sha256_struct, word, j++);
+        t = 0;
+        while (t < 16){
+            w[t] = (uint32_t)((unsigned char)(words[j + 0]) << 24)
+            | (uint32_t)((unsigned char)(words[j + 1]) << 16)
+            | (uint32_t)((unsigned char)(words[j + 2]) << 8)
+            | (uint32_t)((unsigned char)(words[j + 3]));
+            t++;
+            j += 4;
+        }
+        while (t < 64){
+            w[t] = w[t - 7] + ft_ssig0(w[t - 15]) + w[t - 16] + ft_ssig1(w[t - 2]);
+            t++;
+        }
+        t = 0;
+        printf("---------------------\n");
+        while (t < 64) {
+            printf("w[%d] : %x\n", t, w[t]);
+            t++;
+        }
+        t = 0;
+        while (t < 64){
+            ft_update_abcdefgh(sha256_struct, w[t], g_sha256_k[t]);
+            t++;
         }
         ft_update_hx(sha256_struct);
         i += 64;
@@ -173,6 +194,10 @@ void ft_reverse_words(t_sha256_struct *sha256_struct){
     SHA256_H1 = ft_reverse_bits(SHA256_H1);
     SHA256_H2 = ft_reverse_bits(SHA256_H2);
     SHA256_H3 = ft_reverse_bits(SHA256_H3);
+    SHA256_H4 = ft_reverse_bits(SHA256_H4);
+    SHA256_H5 = ft_reverse_bits(SHA256_H5);
+    SHA256_H6 = ft_reverse_bits(SHA256_H6);
+    SHA256_H7 = ft_reverse_bits(SHA256_H7);
 }
 
 char *ft_sha256_decode(t_sha256_struct *sha256_struct){
