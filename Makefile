@@ -18,12 +18,22 @@ INC_PATH = ./includes/ $(LIB_PATH)includes/
 
 # SOURCES
 SRC_NAME =	main.c \
-            md5.c \
-            sha256.c \
-            ft_free.c \
-            ft_options.c \
-            ft_print.c \
-            ft_print_usage.c \
+            md5/md5.c \
+            md5/encode.c \
+            md5/decode.c \
+            md5/padding.c \
+            sha256/sha256.c \
+            sha256/encode.c \
+            sha256/decode.c \
+            sha256/padding.c \
+            sha256/sigma.c \
+            sha256/maj_ch.c \
+            misc/free.c \
+            misc/options.c \
+            misc/print.c \
+            misc/print_usage.c \
+            misc/reverse_bits.c \
+            misc/rotate.c \
 
 
 # OBJECTS
@@ -74,6 +84,9 @@ $(NAME): $(OBJ_PATH) $(DEPS) $(OBJ)
 
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)/md5
+	@mkdir -p $(OBJ_PATH)/sha256
+	@mkdir -p $(OBJ_PATH)/misc
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@echo -e "--$(LOG_CLEAR)$(LOG_MAGENTA)$(NAME)$(LOG_NOCOLOR)........................ $(LOG_YELLOW)$<$(LOG_NOCOLOR)$(LOG_UP)"
@@ -83,8 +96,9 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 clean:
 	@$(MAKE) -C libft clean
 	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)clean $(NAME)$(LOG_NOCOLOR)"
-	@$(RM) -f $(OBJ)
+	@$(RM) -rf $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
+	@$(RM) -rf $(OBJ_PATH)
 	@echo -e "--$(LOG_CLEAR)$(LOG_YELLOW)Objects$(LOG_NOCOLOR) deleted.............. $(LOG_RED)×$(LOG_NOCOLOR)"
 
 .PHONY: fclean

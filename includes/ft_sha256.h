@@ -57,11 +57,18 @@ typedef struct      s_sha256_struct{
 
 
 
-void    ft_sha256_init(t_sha256_struct *sha256_struct, char *str_to_hash);
-void    ft_sha256_free(t_sha256_struct *sha256_struct);
-void    ft_sha256(char *str_to_hash);
-void    ft_sha256_encode(t_sha256_struct *sha256_struct);
-void    ft_sha256_padding(t_sha256_struct *sha256_struct);
-void    ft_sha256_append_len(t_sha256_struct *sha256_struct);
+void        ft_sha256_init(t_sha256_struct *sha256_struct, char *str_to_hash);
+void        ft_sha256_free(t_sha256_struct *sha256_struct);
+//void        ft_sha256(char *str_to_hash);
+void        ft_sha256_encode(t_sha256_struct *sha256_struct);
+char        *ft_sha256_decode(t_sha256_struct *sha256_struct);
+void        ft_sha256_padding(t_sha256_struct *sha256_struct);
+void        ft_sha256_append_len(t_sha256_struct *sha256_struct);
+uint32_t    ft_ch(uint32_t x, uint32_t y, uint32_t z);
+uint32_t    ft_maj(uint32_t x, uint32_t y, uint32_t z);
+uint32_t    ft_bsig0(uint32_t x);
+uint32_t    ft_bsig1(uint32_t x);
+uint32_t    ft_ssig0(uint32_t x);
+uint32_t    ft_ssig1(uint32_t x);
 
 #endif

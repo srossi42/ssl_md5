@@ -61,8 +61,8 @@ typedef unsigned short int UINT2;
 typedef unsigned long int UINT4;
 
 
-void                ft_md5(char *str_to_hash);
-void                ft_sha256(char *str_to_hash);
+char                *ft_md5(char *str_to_hash);
+char                *ft_sha256(char *str_to_hash);
 
 void                ft_parse_opts(t_info *info, int argc, char **arg); //parse md5 & sha256
 
@@ -73,7 +73,9 @@ void                ft_print_usage_option(t_info *info, char option);
 void                ft_free_info(t_info *info);
 void                ft_print_hash(t_info *info);
 
-
+uint32_t            ft_reverse_bits(uint32_t value);
+uint32_t            ft_rotate_left(uint32_t x, uint32_t n);
+uint32_t	        ft_rotate_right(uint32_t x, uint32_t n);
 
 //void				ft_error(t_info *info, char *path);
 //void				ft_error_option(char option);
