@@ -34,6 +34,9 @@ SRC_NAME =	main.c \
             misc/print_usage.c \
             misc/reverse_bits.c \
             misc/rotate.c \
+            misc/read_file.c \
+            misc/read_stdin.c \
+            misc/strnjoin.c \
 
 
 # OBJECTS

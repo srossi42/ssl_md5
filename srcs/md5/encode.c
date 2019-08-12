@@ -77,6 +77,7 @@ void			ft_md5_encode(t_md5_struct *md5_struct)
 	ft_bzero(word, 4);
 	i = 0;
 	md5_struct->total_len += 8;
+    printf("md5_struct->total_len : %lld\n", md5_struct->total_len);
 	while (i < md5_struct->total_len - 1)
 	{
 		ft_bzero(words, 64);

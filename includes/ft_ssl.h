@@ -20,6 +20,9 @@
 # include <sys/types.h>
 # include <sys/acl.h>
 # include <dirent.h>
+# include <errno.h>
+# include <fcntl.h>
+
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
 # include "ft_md5.h"
@@ -41,11 +44,13 @@ typedef struct	    s_info
     char			*filename_to_hash;
     char			*string_to_hash;
     int             current_arg;
+    uint64_t        input_len;
+    char            *input;
     char            *hash;
     boolean_t       ready_to_hash;
 }				    t_info;
 
-typedef void	    (*t_algo_f)(char *str_to_hash);
+typedef char	    *(*t_algo_f)(char *str_to_hash);
 typedef void	    (*t_parse_f)(t_info *info, int argc, char **arg);
 
 typedef struct	    s_ptrs
@@ -71,13 +76,17 @@ int                 ft_set_option(t_info *info, char option);
 void	            ft_print_usage(void);
 void                ft_print_usage_option(t_info *info, char option);
 void                ft_free_info(t_info *info);
-void                ft_print_hash(t_info *info);
+void                ft_print_hash(t_info *info, int argc);
 
 uint32_t            ft_reverse_bits(uint32_t value);
 uint32_t            ft_rotate_left(uint32_t x, uint32_t n);
 uint32_t	        ft_rotate_right(uint32_t x, uint32_t n);
 
-//void				ft_error(t_info *info, char *path);
+void			    ft_read_from_file(t_info *info);
+void			    ft_read_stdin(t_info *info);
+void				ft_error(t_info *info, char *path);
+
+char		        *ft_strnjoin(char *s1, char *s2, size_t len1, size_t len2);
 //void				ft_error_option(char option);
 //void				ft_errno_error(t_info *info, char *path);
 //int				ft_check_errors_2(t_info *info, char *path, struct stat *st, DIR *dir);

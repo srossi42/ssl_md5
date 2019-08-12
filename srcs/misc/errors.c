@@ -55,6 +55,8 @@ void			ft_error(t_info *info, char *argv)
 		len--;
 	ft_dprintf(2, "ft_ssl: %s: %s\n", &argv[len + 1], strerror(errno));
 	errno = 0;
+    //Free et exit
+    exit(EXIT_FAILURE);
 }
 
 void			ft_errno_error(t_info *info, char *argv)
@@ -67,6 +69,7 @@ void			ft_errno_error(t_info *info, char *argv)
 
 void			ft_error_option(char option)
 {
+    //free la structure avant
 	ft_printf("ft_ssl: illegal option -- %c\n", option);
 	ft_print_usage();
 	exit(EXIT_FAILURE);

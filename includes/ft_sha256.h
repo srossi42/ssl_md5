@@ -50,8 +50,8 @@ typedef struct      s_sha256_struct{
     sha256_byte_t      buffer[64]; /* mémoire tampon d'entrée */
     char            *input;
     unsigned char   *data;
-    size_t          input_len;
-    size_t          total_len;
+    uint64_t          input_len;
+    uint64_t          total_len;
 
 }                   t_sha256_struct;
 

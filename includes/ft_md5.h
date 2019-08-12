@@ -62,12 +62,11 @@ typedef struct      s_md5_struct
 	md5_byte_t		buffer[64]; /* mémoire tampon d'entrée */
 	char			*input;
 	unsigned char	*data;
-	size_t			input_len;
-	size_t			total_len;
+    uint64_t		input_len;
+    uint64_t		total_len;
 }                   t_md5_struct;
 
 void	ft_md5_free(t_md5_struct *md5_struct);
-//void	ft_md5(char *str_to_hash);
 void	ft_md5_encode(t_md5_struct *md5_struct);
 void	ft_md5_padding(t_md5_struct *md5_struct);
 char	*ft_md5_decode(t_md5_struct *md5_struct);

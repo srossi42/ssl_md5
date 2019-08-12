@@ -39,18 +39,38 @@ void	ft_sha256_free(t_sha256_struct *sha256_struct)
 		ft_strdel(&sha256_struct->input);
 }
 
-void	ft_sha256(char *str_to_hash)
+char	*ft_sha256(char *str_to_hash)
 {
 	struct s_sha256_struct	sha256_struct;
 	char					*hash;
+    ssize_t                 len;
+    ssize_t                 i;
+    char                    *tmp;
 
 	ft_sha256_init(&sha256_struct, str_to_hash);
 	ft_sha256_padding(&sha256_struct);
 	ft_sha256_encode(&sha256_struct);
 	hash = ft_sha256_decode(&sha256_struct);
+
+
 	//mettre le res dans la structure pour éviter de malloc à chaque fois une string
-	ft_printf("sha256 (\"%s\") = %s\n", sha256_struct.input, hash);
+//	ft_printf("sha256 (\"%s\") = %s\n", sha256_struct.input, hash);
 	//ft_sha256_print_res(&sha256_struct);
 	ft_sha256_free(&sha256_struct);
-	//return hash;
+    len = 32 - ft_strlen(hash);
+    ft_printf("len : %lld\n", len);
+    i = 0;
+    if (len > 0)
+    {
+        tmp = ft_strnew(len);
+        while (i < len)
+        {
+            tmp[i] = '0';
+            i++;
+        }
+        ft_printf("tmp : %s\n", tmp);
+        hash = ft_strjoin(tmp, hash);
+        ft_strdel(&tmp);
+    }
+	return hash;
 }

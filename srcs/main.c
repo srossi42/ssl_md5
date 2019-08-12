@@ -12,7 +12,8 @@
 
 #include "ft_ssl.h"
 
-int ft_set_functions(t_ptrs *ptrs, int *argc, char **argv){
+int ft_set_functions(t_ptrs *ptrs, int *argc, char **argv)
+{
     int i;
 
     t_ptrs      tab_ptrs[] =
@@ -23,11 +24,8 @@ int ft_set_functions(t_ptrs *ptrs, int *argc, char **argv){
 
     i = 0;
     while(i < NB_FUNCTIONS){
-        //ft_printf("%d\n", i);
-        //ft_printf("cmd dans tab : %s\n", tab_ptrs[i].cmd);
-        //ft_printf("argv[1] : %s\n", argv[1]);
         if (ft_strcmp(tab_ptrs[i].cmd, argv[1]) == 0) {
-            ft_printf("found\n");
+            ft_printf("function found\n");
             ptrs->cmd = tab_ptrs[i].cmd;
             ptrs->ft_hash = tab_ptrs[i].ft_hash;
             ptrs->ft_parse = tab_ptrs[i].ft_parse;
@@ -39,9 +37,9 @@ int ft_set_functions(t_ptrs *ptrs, int *argc, char **argv){
     return 0;
 }
 
-
-void ft_parse_opts(t_info *info, int argc, char **argv){
-    ft_printf("ft_parse_opts\n");
+void ft_parse_opts(t_info *info, int argc, char **argv)
+{
+    ft_printf("ft_parse_opts, %d\n", argc);
     //ft_printf("arg en cours : %s\n",   argv[info->current_arg]);
     //ft_printf("info options before : %x\n", info->options);
     if (info->options & OPT_STRING){
@@ -52,21 +50,23 @@ void ft_parse_opts(t_info *info, int argc, char **argv){
         //on désactive l'option
         info->options = info->options ^ OPT_STRING;
     }
-
-    if (ft_strlen(argv[info->current_arg]) == 2 && argv[info->current_arg][0] == '-' &&
+    else if (ft_strlen(argv[info->current_arg]) == 2 && argv[info->current_arg][0] == '-' &&
         ft_is_valid_option(argv[info->current_arg][1], OPTS_MD5_SHA256)){
         ft_printf("%c is an option\n", argv[info->current_arg][1]);
         ft_set_option(info, argv[info->current_arg][1]);
     }
     else if (ft_strlen(argv[info->current_arg]) == 2 && argv[info->current_arg][0] == '-'){
-
         ft_print_usage_option(info, argv[info->current_arg][1]);
-
     }
 
     else{
         //on est pas sur une option (ne commence pas par '-' ou bien > à 2 char)
         ft_printf("on ouvre le fichier et on le parse pour le hasher\n");
+        info->filename_to_hash = ft_strdup(argv[info->current_arg]);
+        ft_read_from_file(info);
+//        ft_printf("info->string_to_hash: %s\n", info->string_to_hash);
+
+//
     }
     //ft_printf("info options after : %x\n", info->options);
 }
@@ -74,7 +74,8 @@ void ft_parse_opts(t_info *info, int argc, char **argv){
 
 
 
-void ft_print_info(t_info *info){
+void ft_print_info(t_info *info)
+{
     ft_printf("--------------\n");
     if (info->options)
         ft_printf("Options : %c\n", info->options);
@@ -89,24 +90,6 @@ void ft_print_info(t_info *info){
         ft_printf("ready_to_hash : %b", info->ready_to_hash);
 }
 
-/*
-void ft_read_from_file(int fd){
-    char        buffer[BUFFER_SIZE];
-    char        *stdin;
-
-    stdin = ft_strnew(1);
-    if (fd == 1){
-
-        while(read(STDIN_FILENO, buffer, BUFFER_SIZE) > 0)
-        {
-            ft_strcat(stdin, buffer);
-            ft_printf("string : %s.\n", buffer);
-            ft_printf("stdin : %s.\n", stdin);
-        }
-    }
-
-}
-*/
 
 void ft_reinit_info(t_info *info){
     //ft_printf("Reinit function\n");
@@ -125,33 +108,42 @@ int	main(int argc, char **argv)
     t_ptrs      hash_ptrs;
 
     ft_bzero(&info, sizeof(t_info));
-    ft_print_info(&info);
+//    ft_print_info(&info);
     info.current_arg += 2;
-    ft_print_info(&info);
+//    ft_print_info(&info);
 	if (argc == 1)
 		    ft_print_usage();
     else if (ft_set_functions(&hash_ptrs, &argc, argv)){
         //ft_printf("algo : %s\n", hash_ptrs.cmd);
         info.algo_name = ft_strdup(hash_ptrs.cmd);
-
-        while (info.current_arg < argc){
-
-            hash_ptrs.ft_parse(&info, argc, argv);
-
-            //a suppr
-            //info.string_to_hash = ft_strdup("test str to hash");
-            //
-            if (info.string_to_hash){
-                hash_ptrs.ft_hash(info.string_to_hash);
-                //a suppr
-                //sha 256
-                info.hash = ft_strdup("97d035e32036a670058f2be4e008a7c56355489750a5da6f2af342db4a968e99");
-                //
-                ft_print_hash(&info);
+        if (argc == 2){
+            ft_printf("on lit entree standard\n");
+            ft_read_stdin(&info);
+            ft_printf("string to hash : %s\n", info.string_to_hash);
+//            hash_ptrs.ft_parse(&info, argc, argv);
+//            exit(0);
+            if (info.string_to_hash)
+            {
+                info.hash = hash_ptrs.ft_hash(info.string_to_hash);
+                ft_print_hash(&info, argc);
             }
-            ft_reinit_info(&info);
-            info.current_arg++;
         }
+
+        else
+        {
+            while (info.current_arg < argc)
+            {
+                hash_ptrs.ft_parse(&info, argc, argv);
+                if (info.string_to_hash)
+                {
+                    info.hash = hash_ptrs.ft_hash(info.string_to_hash);
+                    ft_print_hash(&info, argc);
+                }
+                ft_reinit_info(&info);
+                info.current_arg++;
+            }
+        }
+
     }
     //ft_print_info(&info);
     ft_free_info(&info);
