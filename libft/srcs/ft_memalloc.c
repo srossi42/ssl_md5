@@ -16,16 +16,10 @@
 
 void	*ft_memalloc(size_t size)
 {
-	void	*ptr;
-	size_t	i;
+    void	*mem;
 
-	i = 0;
-	if (!(ptr = (void *)malloc(size)) || !size)
-		return (NULL);
-	while (i < size)
-	{
-		((unsigned char *)ptr)[i] = 0;
-		i++;
-	}
-	return (ptr);
+    if (!(mem = malloc(size)))
+        return (NULL);
+    ft_memset(mem, 0, size);
+    return (mem);
 }

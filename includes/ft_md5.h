@@ -61,7 +61,7 @@ typedef struct      s_md5_struct
 	md5_word_t		count[2]; /* message length in bits, lsw first */
 	md5_byte_t		buffer[64]; /* mémoire tampon d'entrée */
 	char			*input;
-	unsigned char	*data;
+	char	        *data;
     uint64_t		input_len;
     uint64_t		total_len;
 }                   t_md5_struct;

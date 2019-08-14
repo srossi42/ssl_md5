@@ -13,10 +13,10 @@
 #include "../../includes/ft_ssl.h"
 #include "../../includes/ft_sha256.h"
 
-void	ft_sha256_init(t_sha256_struct *sha256_struct, char *str_to_hash)
+void	ft_sha256_init(t_sha256_struct *sha256_struct, char *str_to_hash, size_t size)
 {
 	sha256_struct->input = ft_strdup(str_to_hash);
-	sha256_struct->input_len = ft_strlen(str_to_hash);
+	sha256_struct->input_len = size;
 	sha256_struct->total_len = sha256_struct->input_len + 1;
 	SHA256_H0 = 0x6a09e667;
 	SHA256_H1 = 0xbb67ae85;
@@ -39,7 +39,7 @@ void	ft_sha256_free(t_sha256_struct *sha256_struct)
 		ft_strdel(&sha256_struct->input);
 }
 
-char	*ft_sha256(char *str_to_hash)
+char	*ft_sha256(char *str_to_hash, size_t size)
 {
 	struct s_sha256_struct	sha256_struct;
 	char					*hash;
@@ -47,7 +47,7 @@ char	*ft_sha256(char *str_to_hash)
     ssize_t                 i;
     char                    *tmp;
 
-	ft_sha256_init(&sha256_struct, str_to_hash);
+	ft_sha256_init(&sha256_struct, str_to_hash, size);
 	ft_sha256_padding(&sha256_struct);
 	ft_sha256_encode(&sha256_struct);
 	hash = ft_sha256_decode(&sha256_struct);

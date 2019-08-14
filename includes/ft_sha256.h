@@ -57,8 +57,8 @@ typedef struct      s_sha256_struct{
 
 
 
-void        ft_sha256_init(t_sha256_struct *sha256_struct, char *str_to_hash);
-void        ft_sha256_free(t_sha256_struct *sha256_struct);
+//void        ft_sha256_init(t_sha256_struct *sha256_struct, char *str_to_hash);
+//void        ft_sha256_free(t_sha256_struct *sha256_struct);
 //void        ft_sha256(char *str_to_hash);
 void        ft_sha256_encode(t_sha256_struct *sha256_struct);
 char        *ft_sha256_decode(t_sha256_struct *sha256_struct);

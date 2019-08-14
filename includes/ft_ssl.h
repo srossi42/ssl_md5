@@ -50,7 +50,7 @@ typedef struct	    s_info
     boolean_t       ready_to_hash;
 }				    t_info;
 
-typedef char	    *(*t_algo_f)(char *str_to_hash);
+typedef char	    *(*t_algo_f)(char *str_to_hash, size_t size);
 typedef void	    (*t_parse_f)(t_info *info, int argc, char **arg);
 
 typedef struct	    s_ptrs
@@ -66,8 +66,8 @@ typedef unsigned short int UINT2;
 typedef unsigned long int UINT4;
 
 
-char                *ft_md5(char *str_to_hash);
-char                *ft_sha256(char *str_to_hash);
+char                *ft_md5(char *str_to_hash, size_t size);
+char                *ft_sha256(char *str_to_hash, size_t size);
 
 void                ft_parse_opts(t_info *info, int argc, char **arg); //parse md5 & sha256
 
@@ -82,6 +82,7 @@ uint32_t            ft_reverse_bits(uint32_t value);
 uint32_t            ft_rotate_left(uint32_t x, uint32_t n);
 uint32_t	        ft_rotate_right(uint32_t x, uint32_t n);
 
+void			read_from_file(t_info **info, char *filename);
 void			    ft_read_from_file(t_info *info);
 void			    ft_read_stdin(t_info *info);
 void				ft_error(t_info *info, char *path);

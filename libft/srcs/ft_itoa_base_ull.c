@@ -26,7 +26,7 @@ static size_t		ft_nblen_ullb(unsigned long long l, int ln_base)
 	return (i);
 }
 
-char				*ft_itoa_base_ull(unsigned long long l, char *base)
+char				*ft_itoa_base_ull(unsigned long long nbr, char *base)
 {
 	int					ln_base;
 	unsigned long long	tmp;
@@ -35,13 +35,11 @@ char				*ft_itoa_base_ull(unsigned long long l, char *base)
 
 	ln_base = ft_strlen(base);
 	j = 0;
-	if (l == 0)
-		return (ft_strdup("0"));
-	str = ft_strnew(ft_nblen_ullb(l, ln_base));
-	while (l > 0)
+	str = ft_strnew(ft_nblen_ullb(nbr, ln_base));
+	while (nbr > 0)
 	{
-		tmp = l % ln_base;
-		l = l / ln_base;
+		tmp = nbr % ln_base;
+		nbr = nbr / ln_base;
 		str[j] = base[tmp];
 		j++;
 	}
