@@ -110,27 +110,61 @@ void			ft_md5_encode(t_md5_struct *md5_struct)
 
 	while (i < md5_struct->total_len)
 	{
-	    printf("*** i : %lld ***\n", i);
-	    printf("---------------------------\n");
-        ft_printf("MD5_H0 : %X\n", MD5_H0);
-        ft_printf("MD5_H1 : %X\n", MD5_H1);
-        ft_printf("MD5_H2 : %X\n", MD5_H2);
-        ft_printf("MD5_H3 : %X\n", MD5_H3);
-        printf("---------------------------\n");
+//	    printf("*** i : %lld ***\n", i);
+
 		ft_bzero(words, 64);
 		ft_memcpy(words, md5_struct->data + i, 64);
 		ft_md5_init_abcd(md5_struct);
 		j = 0;
-		while (j < 64)
+        if (i > 2152726428){
+            printf("*** i : %lld ***\n", i);
+            printf("---------------------------\n");
+            ft_printf("MD5_H0 : %X\n", MD5_H0);
+            ft_printf("MD5_H1 : %X\n", MD5_H1);
+            ft_printf("MD5_H2 : %X\n", MD5_H2);
+            ft_printf("MD5_H3 : %X\n\n", MD5_H3);
+            ft_printf("MD5_A : %X\n", MD5_A);
+            ft_printf("MD5_B : %X\n", MD5_B);
+            ft_printf("MD5_C : %X\n", MD5_C);
+            ft_printf("MD5_D : %X\n", MD5_D);
+
+            printf("---------------------------\n");
+        }
+
+        while (j < 64)
 		{
 			ft_md5_get_fg(md5_struct, j);
 			ft_memcpy(word, words + MD5_G * 4, 4);
+			if (i > 2152726428 && j > 60){
+                ft_printf("MD5_F : %X\n", MD5_F);
+                ft_printf("MD5_G : %X\n", MD5_G);
+			}
 			ft_md5_update_abcd(md5_struct, word, j++);
+
 		}
+
 		ft_md5_update_hx(md5_struct);
 		i += 64;
-		if (i >6400)
-		    exit(0);
+		//i s'arrete a 2152726528 + 64
+//		if (i > 2152726592)
+//		    exit(0);
 	}
+
+
+    printf("---------FINAL PRESQUE------------\n");
+    ft_printf("MD5_F : %X\n", MD5_F);
+    ft_printf("MD5_G : %X\n", MD5_G);
+
+    ft_printf("MD5_H0 : %X\n", MD5_H0);
+    ft_printf("MD5_H1 : %X\n", MD5_H1);
+    ft_printf("MD5_H2 : %X\n", MD5_H2);
+    ft_printf("MD5_H3 : %X\n\n", MD5_H3);
+    ft_printf("MD5_A : %X\n", MD5_A);
+    ft_printf("MD5_B : %X\n", MD5_B);
+    ft_printf("MD5_C : %X\n", MD5_C);
+    ft_printf("MD5_D : %X\n", MD5_D);
+    printf("---------------------------\n");
+
+
     printf("i : %lld\n", i-64);
 }
