@@ -56,10 +56,9 @@ typedef unsigned int    md5_word_t; /* 32-bit word */
 /* Contexte MD5. */
 typedef struct      s_md5_struct
 {
-	md5_word_t		state[4]; /* digest buffer (ABCD) */
+	md5_word_t		state[4];
 	md5_word_t		abcdfg[6];
-	md5_word_t		count[2]; /* message length in bits, lsw first */
-	md5_byte_t		buffer[64]; /* mémoire tampon d'entrée */
+	md5_byte_t		buffer[64];
 	char			*input;
 	char	        *data;
     uint64_t		input_len;
