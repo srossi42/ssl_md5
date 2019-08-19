@@ -18,6 +18,8 @@ static	void	ft_md5_init(t_md5_struct *md5_struct, char *str_to_hash, size_t size
 //	md5_struct->input = ft_strdup(str_to_hash);
     md5_struct->input = str_to_hash;
     md5_struct->input_len = size;
+
+
 //    printf("str to hash : %s\n", str_to_hash);
 //    printf("str to hash : %s\n", md5_struct->input);
 //    printf("input len : %lld\n", md5_struct->input_len);

@@ -63,32 +63,19 @@ char			*ft_md5_decode(t_md5_struct *md5_struct)
 	char *res;
 	char *tmp;
 
-
-    ft_printf("----------- FINAL -----------\n");
-    ft_printf("MD5_H0 : %X\n", MD5_H0);
-    ft_printf("MD5_H1 : %X\n", MD5_H1);
-    ft_printf("MD5_H2 : %X\n", MD5_H2);
-    ft_printf("MD5_H3 : %X\n\n", MD5_H3);
-
-
+    printf("entree decode\n");
     ft_md5_reverse_words(md5_struct);
 	res = ft_itoa_base_ull(MD5_H0, "0123456789abcdef");
-    printf("output : %s\n", res);
-
-	tmp = ft_itoa_base_ull(MD5_H1, "0123456789abcdef");
+   	tmp = ft_itoa_base_ull(MD5_H1, "0123456789abcdef");
 	res = ft_strjoin_del(res, tmp);
 	ft_strdel(&tmp);
-    printf("output : %s\n", res);
-
-	tmp = ft_itoa_base_ull(MD5_H2, "0123456789abcdef");
+  	tmp = ft_itoa_base_ull(MD5_H2, "0123456789abcdef");
     res = ft_strjoin_del(res, tmp);
     ft_strdel(&tmp);
-    printf("output : %s\n", res);
-
-    tmp = ft_itoa_base_ull(MD5_H3, "0123456789abcdef");
+       tmp = ft_itoa_base_ull(MD5_H3, "0123456789abcdef");
 	res = ft_strjoin_del(res, tmp);
+	printf("sortie decode\n");
     ft_strdel(&tmp);
-    printf("output : %s\n", res);
-
-	return (res);
+    printf("sortie decode2\n");
+    return (res);
 }

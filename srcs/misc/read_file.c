@@ -147,6 +147,7 @@ void			read_from_file(t_info **info, char *filename)
         (*info)->input_len += read_return;
         ft_bzero(buffer, buff_size);
     }
+
     if (fd > 2)
         close(fd);
     if (buffer)

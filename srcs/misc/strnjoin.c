@@ -32,6 +32,7 @@ char		*ft_strnjoin(char *s1, char *s2, size_t len1, size_t len2)
         i++;
     }
     (s1) ? ft_strdel(&s1) : NULL;
+//    (s2) ? ft_strdel(&s2) : NULL;
     printf("Malloc join de len1 + len2 : %zu => OK\n", (len1 + len2 + 1));
     return (output);
 }

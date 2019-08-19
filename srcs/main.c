@@ -45,7 +45,11 @@ void ft_parse_opts(t_info *info, int argc, char **argv)
         //si option 's' est déjà active on hash l'argument courant qui doit etre considéré comme une str(si existe)
         //on ajouter la string à hasher (apres l'avoir paddé)
         info->input_len = ft_strlen(argv[info->current_arg]);
+//        printf("string : %s\n", argv[info->current_arg]);
+//        printf("string len : %zu\n", ft_strlen(argv[info->current_arg]));
+
         info->string_to_hash = ft_strdup(argv[info->current_arg]);
+//        info->string_to_hash = argv[info->current_arg];
 
         //on désactive l'option
         info->options = info->options ^ OPT_STRING;
@@ -62,16 +66,9 @@ void ft_parse_opts(t_info *info, int argc, char **argv)
     else{
         //on est pas sur une option (ne commence pas par '-' ou bien > à 2 char)
         ft_printf("on ouvre le fichier et on le parse pour le hasher\n");
-//        info->filename_to_hash = ft_strdup(argv[info->current_arg]);
-//        read_from_file(&info, info->filename_to_hash);
-//
         read_from_file(&info, argv[info->current_arg]);
     }
-    //ft_printf("info options after : %x\n", info->options);
 }
-
-
-
 
 void ft_print_info(t_info *info)
 {
@@ -88,7 +85,6 @@ void ft_print_info(t_info *info)
     if (info->ready_to_hash)
         ft_printf("ready_to_hash : %b", info->ready_to_hash);
 }
-
 
 void ft_reinit_info(t_info *info){
     if (info->filename_to_hash)
@@ -117,6 +113,7 @@ int	main(int argc, char **argv)
             {
                 info.hash = hash_ptrs.ft_hash(info.string_to_hash, info.input_len);
                 ft_print_hash(&info, argc);
+
             }
         }
         else
@@ -126,6 +123,7 @@ int	main(int argc, char **argv)
                 hash_ptrs.ft_parse(&info, argc, argv);
                 if (info.string_to_hash)
                 {
+//                    printf("string len2 : %llu\n", info.input_len);
                     info.hash = hash_ptrs.ft_hash(info.string_to_hash, info.input_len);
                     ft_print_hash(&info, argc);
                 }
