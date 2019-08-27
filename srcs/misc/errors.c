@@ -6,11 +6,11 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 12:46:38 by srossi            #+#    #+#             */
-/*   Updated: 2018/09/11 14:32:32 by srossi           ###   ########.fr       */
+/*   Updated: 2019/08/27 20:17:35 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl.h"
+#include "../../includes/ft_ssl.h"
 #include <errno.h>
 
 //static	void	ft_load_path(t_info *info, char *path, int len)

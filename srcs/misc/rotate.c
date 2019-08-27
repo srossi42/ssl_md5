@@ -1,15 +1,23 @@
-//
-// Created by Savinien ROSSI on 2019-08-09.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/27 20:18:18 by srossi            #+#    #+#             */
+/*   Updated: 2019/08/27 20:18:52 by srossi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
 
-uint32_t    ft_rotate_left(uint32_t x, uint32_t n)
+uint32_t	ft_rotate_left(uint32_t x, uint32_t n)
 {
-    return ((x << n) | (x >> (32 - n)));
+	return ((x << n) | (x >> (32 - n)));
 }
 
 uint32_t	ft_rotate_right(uint32_t x, uint32_t n)
 {
-    return ((x >> n) | (x << (32 - n)));
+	return ((x >> n) | (x << (32 - n)));
 }

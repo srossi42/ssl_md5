@@ -6,7 +6,7 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 14:52:42 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/09 15:00:48 by srossi           ###   ########.fr       */
+/*   Updated: 2019/08/27 20:09:49 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,17 @@ static	void	ft_md5_init_abcd(t_md5_struct *md5_struct)
 	MD5_D = MD5_H3;
 }
 
-static	void	ft_md5_update_abcd(t_md5_struct *md5_struct, md5_byte_t word[4], int j, uint64_t i)
+static	void	ft_md5_update_abcd(t_md5_struct *md5_struct,
+		md5_byte_t word[4], int j, uint64_t i)
 {
 	int			tmp;
 	uint32_t	w_g;
 
-	w_g = (uint32_t)((uint32_t)word[0] | (uint32_t)(word[1] << 8) | (uint32_t)(word[2] << 16) | (uint32_t)(word[3] << 24));
-
-//    MD5_F += MD5_A + g_md5_k[j]
-//                 + (uint32_t) ((uint32_t)((unsigned char)((*md5_struct).data[MD5_G * 4 + (i / 64) * 64 + 3]) << 24)
-//                               | (uint32_t)((unsigned char)((*md5_struct).data[MD5_G * 4 + (i / 64) * 64 + 2]) << 16)
-//                               | (uint32_t)((unsigned char)((*md5_struct).data[MD5_G * 4 + (i / 64) * 64 + 1]) << 8)
-//                               | (unsigned char)(*md5_struct).data[MD5_G * 4 + (i / 64) * 64 + 0]);
-
-
+	w_g = (uint32_t)((uint32_t)word[0] | (uint32_t)(word[1] << 8) |
+			(uint32_t)(word[2] << 16) | (uint32_t)(word[3] << 24));
 	tmp = MD5_D;
 	MD5_D = MD5_C;
 	MD5_C = MD5_B;
-
-
-//    MD5_B += ft_rotate_left(MD5_F, g_md5_r[j]);
 	MD5_B += ft_rotate_left(MD5_A + MD5_F + g_md5_k[j] + w_g, g_md5_r[j]);
 	MD5_A = tmp;
 }
@@ -80,12 +71,11 @@ static	void	ft_md5_get_fg(t_md5_struct *md5_struct, int j)
 void			ft_md5_encode(t_md5_struct *md5_struct)
 {
 	uint64_t	i;
-    uint64_t	j;
+	uint64_t	j;
 	md5_byte_t	word[4];
 	md5_byte_t	words[64];
 
-    printf("entree encode\n");
-    ft_bzero(word, 4);
+	ft_bzero(word, 4);
 	i = 0;
 	md5_struct->total_len += 8;
 	while (i < md5_struct->total_len)
@@ -94,15 +84,14 @@ void			ft_md5_encode(t_md5_struct *md5_struct)
 		ft_memcpy(words, md5_struct->data + i, 64);
 		ft_md5_init_abcd(md5_struct);
 		j = 0;
-        while (j < 64)
+		while (j < 64)
 		{
 			ft_md5_get_fg(md5_struct, j);
 			ft_memcpy(word, words + MD5_G * 4, 4);
 			ft_md5_update_abcd(md5_struct, word, j, i);
-            j++;
+			j++;
 		}
 		ft_md5_update_hx(md5_struct);
 		i += 64;
 	}
-    printf("sortie encode\n");
 }
