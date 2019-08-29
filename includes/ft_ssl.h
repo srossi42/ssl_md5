@@ -41,7 +41,7 @@ typedef struct	    s_info
 {
     char            *algo_name;
     char			options;
-    char			*filename_to_hash;
+//    char			*filename_to_hash;
     char			*string_to_hash;
     int             current_arg;
     uint64_t        input_len;
@@ -82,12 +82,13 @@ uint32_t            ft_reverse_bits(uint32_t value);
 uint32_t            ft_rotate_left(uint32_t x, uint32_t n);
 uint32_t	        ft_rotate_right(uint32_t x, uint32_t n);
 
-void			read_from_file(t_info **info, char *filename);
-void			    ft_read_from_file(t_info *info);
+//void			    read_from_file(t_info **info, char *filename);
+void			    ft_read_from_file(t_info *info, char *filename_to_hash);
 void			    ft_read_stdin(t_info *info);
 void				ft_error(t_info *info, char *path);
 
 char		        *ft_strnjoin(char *s1, char *s2, size_t len1, size_t len2);
+char			    *ft_strjoin_del(char *s1, char *s2);
 //void				ft_error_option(char option);
 //void				ft_errno_error(t_info *info, char *path);
 //int				ft_check_errors_2(t_info *info, char *path, struct stat *st, DIR *dir);

@@ -1,0 +1,314 @@
+Norme: ./srcs/misc/errors.c
+Error (line 16): C++ comment
+Error (line 17): C++ comment
+Error (line 18): C++ comment
+Error (line 19): C++ comment
+Error (line 20): C++ comment
+Error (line 21): C++ comment
+Error (line 22): C++ comment
+Error (line 23): C++ comment
+Error (line 24): C++ comment
+Error (line 25): C++ comment
+Error (line 26): C++ comment
+Error (line 27): C++ comment
+Error (line 28): C++ comment
+Error (line 29): C++ comment
+Error (line 30): C++ comment
+Error (line 31): C++ comment
+Error (line 32): C++ comment
+Error (line 33): C++ comment
+Error (line 34): C++ comment
+Error (line 36): declarations in ft_error are bad aligned
+Error (line 36): declarations in ft_error must be at the top of the function
+Error (line 36): declarations must be followed by one empty line in ft_error
+Error (line 41): C++ comment
+Error (line 42): C++ comment
+Error (line 43): C++ comment
+Error (line 44): C++ comment
+Error (line 45): C++ comment
+Error (line 46): C++ comment
+Error (line 47): C++ comment
+Error (line 48): C++ comment
+Error (line 49): C++ comment
+Error (line 50): C++ comment
+Error (line 51): C++ comment
+Error (line 52): bad indentation
+Error (line 52): must begin only by tabulations
+Error (line 53): bad indentation
+Error (line 53): must begin only by tabulations
+Error (line 58): bad indentation
+Error (line 58): must begin only by tabulations
+Error (line 58): C++ comment
+Error (line 59): bad indentation
+Error (line 59): must begin only by tabulations
+Error (line 72): must begin only by tabulations
+Error (line 72): C++ comment
+Norme: ./srcs/misc/init.c
+Norme: ./srcs/misc/free.c
+Error (line 15): Space before function name
+Error (line 15, col 31): no newline before block
+Norme: ./srcs/misc/print_usage.c
+Error: global scope bad aligned
+Error (line 17): bad indentation
+Error (line 17): must begin only by tabulations
+Error (line 18): bad indentation
+Error (line 18): must begin only by tabulations
+Error (line 21): Space before function name
+Error (line 21, col 53): no newline before block
+Error (line 22): bad indentation
+Error (line 22): must begin only by tabulations
+Error (line 23): bad indentation
+Error (line 23): must begin only by tabulations
+Norme: ./srcs/misc/get_options.c
+Error (line 15): bad spacing after ft_is_option
+Error (line 34): multiple empty lines
+Error (line 35): multiple empty lines
+Error (line 36): multiple empty lines
+Error (line 37): bad spacing before ft_add_option
+Error (line 49): function ft_get_options has 32 lines
+Error (line 49): declarations must be followed by one empty line in ft_get_options
+Error (line 52): C++ comment
+Error (line 53): C++ comment
+Error (line 54): Empty line
+Error (line 56): C++ comment
+Error (line 57): C++ comment
+Error (line 58): C++ comment
+Error (line 59): C++ comment
+Error (line 60): C++ comment
+Error (line 61): C++ comment
+Error (line 62): C++ comment
+Error (line 63): C++ comment
+Error (line 64): C++ comment
+Error (line 65): C++ comment
+Error (line 66): C++ comment
+Error (line 67): C++ comment
+Error (line 68): C++ comment
+Error (line 69): C++ comment
+Error (line 70): C++ comment
+Error (line 71): C++ comment
+Error (line 72): bad indentation
+Error (line 72): must begin only by tabulations
+Error (line 73): bad indentation
+Error (line 74): bad indentation
+Error (line 75): bad indentation
+Error (line 76): bad indentation
+Error (line 77): C++ comment
+Error (line 78): C++ comment
+Error (line 79): C++ comment
+Error (line 80): C++ comment
+Error (line 81): C++ comment
+Error (line 82): C++ comment
+Error (line 83, col 0): no empty line before block
+Norme: ./srcs/misc/options.c
+Error (line 15, col 55): no newline before block
+Error (line 21): missing newline after while
+Error (line 21, col 1): missing space after while
+Error (line 21, col 24): no newline before block
+Error (line 23, col 3): missing space after break
+Error (line 27, col 9): missing parentheses in return statement
+Error (line 28, col 8): missing parentheses in return statement
+Error (line 31, col 44): no newline before block
+Error (line 39): 2 instructions
+Error (line 40, col 5): no newline before block
+Error (line 42, col 9): missing parentheses in return statement
+Error (line 44, col 8): missing parentheses in return statement
+Norme: ./srcs/misc/print.c
+Error (line 15): Space before function name
+Error (line 15, col 31): no newline before block
+Error (line 16): bad indentation
+Error (line 16): must begin only by tabulations
+Error (line 16, col 8): c is instanciated during declaration
+Error (line 18): bad indentation
+Error (line 18): missing newline after while
+Error (line 18): must begin only by tabulations
+Error (line 18, col 25): no newline before block
+Error (line 19): bad indentation
+Error (line 19): missing newline after if
+Error (line 19): must begin only by tabulations
+Error (line 19, col 40): no newline before block
+Error (line 20): bad indentation
+Error (line 20): must begin only by tabulations
+Error (line 21): bad indentation
+Error (line 21): must begin only by tabulations
+Error (line 22): bad indentation
+Error (line 22): must begin only by tabulations
+Error (line 23): bad indentation
+Error (line 23): must begin only by tabulations
+Error (line 26): Space before function name
+Error (line 26, col 42): no newline before block
+Error (line 27): bad indentation
+Error (line 27): must begin only by tabulations
+Error (line 28): C++ comment
+Error (line 29): C++ comment
+Error (line 30): C++ comment
+Error (line 31): C++ comment
+Error (line 32): C++ comment
+Error (line 33): C++ comment
+Error (line 34): C++ comment
+Error (line 35): C++ comment
+Error (line 35): line has 96 characters
+Error (line 36): C++ comment
+Error (line 37): C++ comment
+Error (line 38): C++ comment
+Error (line 39): C++ comment
+Error (line 40): C++ comment
+Error (line 41): C++ comment
+Error (line 42): C++ comment
+Error (line 42): line has 98 characters
+Error (line 43): C++ comment
+Error (line 44, col 0): no empty line before block
+Norme: ./srcs/misc/read_stdin.c
+Error (line 26, col 36): space after (
+Norme: ./srcs/misc/rotate.c
+Norme: ./srcs/misc/strjoin_del.c
+Error: 42 header not at top of the file
+Error: file must end with a single empty line
+Error (line 2): multiple empty lines
+Error (line 5): function ft_strjoin_del has 26 lines
+Error (line 7): bad indentation
+Error (line 7): must begin only by tabulations
+Error (line 8): bad indentation
+Error (line 8): must begin only by tabulations
+Error (line 9): bad indentation
+Error (line 9): must begin only by tabulations
+Error (line 10): bad indentation
+Error (line 10): must begin only by tabulations
+Error (line 12): bad indentation
+Error (line 12): must begin only by tabulations
+Error (line 13): bad indentation
+Error (line 13): must begin only by tabulations
+Error (line 14): bad indentation
+Error (line 14): must begin only by tabulations
+Error (line 15): bad indentation
+Error (line 15): must begin only by tabulations
+Error (line 16): bad indentation
+Error (line 16): must begin only by tabulations
+Error (line 17): bad indentation
+Error (line 17): must begin only by tabulations
+Error (line 18): bad indentation
+Error (line 18): must begin only by tabulations
+Error (line 19): bad indentation
+Error (line 19): must begin only by tabulations
+Error (line 20): bad indentation
+Error (line 20): must begin only by tabulations
+Error (line 21): bad indentation
+Error (line 21): must begin only by tabulations
+Error (line 22): bad indentation
+Error (line 22): must begin only by tabulations
+Error (line 23): bad indentation
+Error (line 23): must begin only by tabulations
+Error (line 24): bad indentation
+Error (line 24): must begin only by tabulations
+Error (line 25): bad indentation
+Error (line 25): must begin only by tabulations
+Error (line 26): bad indentation
+Error (line 26): must begin only by tabulations
+Error (line 27): bad indentation
+Error (line 27): must begin only by tabulations
+Error (line 28): bad indentation
+Error (line 28): must begin only by tabulations
+Error (line 29): bad indentation
+Error (line 29): must begin only by tabulations
+Error (line 30): bad indentation
+Error (line 30): must begin only by tabulations
+Error (line 31): bad indentation
+Error (line 31): must begin only by tabulations
+Error (line 32): bad indentation
+Error (line 32): must begin only by tabulations
+Error (line 33, col 0): no newline after block
+Norme: ./srcs/misc/read_file.c
+Error (line 15): bad spacing after get_file_size
+Error (line 17): bad indentation
+Error (line 17): must begin only by tabulations
+Error (line 19): bad indentation
+Error (line 19): missing newline after if
+Error (line 19): must begin only by tabulations
+Error (line 19, col 29): no newline before block
+Error (line 20): bad indentation
+Error (line 20): must begin only by tabulations
+Error (line 21): bad indentation
+Error (line 21): must begin only by tabulations
+Error (line 21, col 8): missing space after return
+Error (line 22): bad indentation
+Error (line 22): must begin only by tabulations
+Error (line 23): bad indentation
+Error (line 23): must begin only by tabulations
+Error (line 24): bad indentation
+Error (line 24): must begin only by tabulations
+Error (line 25): bad indentation
+Error (line 25): must begin only by tabulations
+Error (line 26): bad indentation
+Error (line 26): must begin only by tabulations
+Error (line 27): bad indentation
+Error (line 27): must begin only by tabulations
+Error (line 28): bad indentation
+Error (line 28): must begin only by tabulations
+Error (line 31): multiple empty lines
+Error (line 32): function ft_read_from_file has 28 lines
+Error (line 32): bad spacing before ft_read_from_file
+Error (line 34): bad indentation
+Error (line 34): must begin only by tabulations
+Error (line 35): bad indentation
+Error (line 35): must begin only by tabulations
+Error (line 36): bad indentation
+Error (line 36): must begin only by tabulations
+Error (line 37): bad indentation
+Error (line 37): must begin only by tabulations
+Error (line 37, col 11): bad spacing
+Error (line 39): bad indentation
+Error (line 39): must begin only by tabulations
+Error (line 40): bad indentation
+Error (line 40): missing newline after if
+Error (line 40): must begin only by tabulations
+Error (line 40, col 17): no newline before block
+Error (line 41): bad indentation
+Error (line 41): must begin only by tabulations
+Error (line 41): line has 86 characters
+Error (line 42): bad indentation
+Error (line 42): must begin only by tabulations
+Error (line 43): bad indentation
+Error (line 43): must begin only by tabulations
+Error (line 44): bad indentation
+Error (line 44): must begin only by tabulations
+Error (line 45): bad indentation
+Error (line 45): must begin only by tabulations
+Error (line 46): bad indentation
+Error (line 46): must begin only by tabulations
+Error (line 47): bad indentation
+Error (line 47): must begin only by tabulations
+Error (line 48): bad indentation
+Error (line 48): missing newline after if
+Error (line 48): must begin only by tabulations
+Error (line 48, col 72): no newline before block
+Error (line 49): bad indentation
+Error (line 49): must begin only by tabulations
+Error (line 50): bad indentation
+Error (line 50): must begin only by tabulations
+Error (line 51): bad indentation
+Error (line 51): must begin only by tabulations
+Error (line 52): bad indentation
+Error (line 52): must begin only by tabulations
+Error (line 53): bad indentation
+Error (line 53): must begin only by tabulations
+Error (line 54): bad indentation
+Error (line 54): must begin only by tabulations
+Error (line 54): line has 102 characters
+Error (line 55): bad indentation
+Error (line 55): must begin only by tabulations
+Error (line 56): bad indentation
+Error (line 56): must begin only by tabulations
+Error (line 57): bad indentation
+Error (line 57): must begin only by tabulations
+Error (line 58): bad indentation
+Error (line 58): must begin only by tabulations
+Error (line 59): bad indentation
+Error (line 59): must begin only by tabulations
+Error (line 60): bad indentation
+Error (line 60): must begin only by tabulations
+Error (line 61): bad indentation
+Error (line 61): must begin only by tabulations
+Norme: ./srcs/misc/reverse_bits.c
+Error (line 15, col 40): no newline before block
+Error (line 16, col 35): missing space around |
+Norme: ./srcs/misc/strnjoin.c
+Warning: /Users/srossi/Documents/ssl_md5/srcs/misc/strnjoin.c may not compile or is invalid for some reasons.

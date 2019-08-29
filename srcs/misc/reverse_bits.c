@@ -6,13 +6,13 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:18:11 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/27 20:18:25 by srossi           ###   ########.fr       */
+/*   Updated: 2019/08/29 18:14:39 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
 
-uint32_t    ft_reverse_bits(uint32_t value){
-	return (value & 0xFF000000)>>24| (value & 0x00FF0000)>>8
-		| (value & 0x0000FF00)<<8 | (value & 0x000000FF)<<24;
+uint32_t	ft_reverse_bits(uint32_t value){
+	return ((value & 0xFF000000) >> 24| (value & 0x00FF0000) >> 8
+		| (value & 0x0000FF00) << 8 | (value & 0x000000FF) << 24);
 }

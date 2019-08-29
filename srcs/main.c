@@ -70,7 +70,7 @@ void	ft_parse_opts(t_info *info, int argc, char **argv)
 	{
 		//on est pas sur une option (ne commence pas par '-' ou bien > à 2 char)
 		ft_printf("on ouvre le fichier et on le parse pour le hasher\n");
-		read_from_file(&info, argv[info->current_arg]);
+		ft_read_from_file(info, argv[info->current_arg]);
 	}
 }
 
@@ -79,8 +79,8 @@ void	ft_print_info(t_info *info)
 	ft_printf("--------------\n");
 	if (info->options)
 		ft_printf("Options : %c\n", info->options);
-	if (info->filename_to_hash)
-		ft_printf("Filename : %s\n", info->filename_to_hash);
+//	if (info->filename_to_hash)
+//		ft_printf("Filename : %s\n", info->filename_to_hash);
 	if (info->string_to_hash)
 		ft_printf("Str to hash : %s\n", info->string_to_hash);
 	if (info->hash)
@@ -92,8 +92,8 @@ void	ft_print_info(t_info *info)
 
 void	ft_reinit_info(t_info *info)
 {
-	if (info->filename_to_hash)
-		ft_strdel(&info->filename_to_hash);
+//	if (info->filename_to_hash)
+//		ft_strdel(&info->filename_to_hash);
 	if (info->string_to_hash)
 		ft_strdel(&info->string_to_hash);
 	if (info->hash)

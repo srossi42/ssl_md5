@@ -37,6 +37,7 @@ SRC_NAME =	main.c \
             misc/read_file.c \
             misc/read_stdin.c \
             misc/strnjoin.c \
+            misc/strjoin_del.c \
 
 
 # OBJECTS

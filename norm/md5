@@ -1,0 +1,6 @@
+Norme: ./srcs/md5/decode.c
+Norme: ./srcs/md5/md5.c
+Error (line 36): function ft_md5 has 29 lines
+Error (line 36, col 0): ft_md5 has 6 variables
+Norme: ./srcs/md5/padding.c
+Norme: ./srcs/md5/encode.c

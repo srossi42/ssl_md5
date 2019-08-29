@@ -6,13 +6,13 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:16:32 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/27 20:17:48 by srossi           ###   ########.fr       */
+/*   Updated: 2019/08/29 18:12:50 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
 
-int ft_is_valid_option(char option, char *options_list){
+int	ft_is_valid_option(char option, char *options_list){
 	int i;
 	int opt_list_len;
 
@@ -28,7 +28,7 @@ int ft_is_valid_option(char option, char *options_list){
 	return 1;
 }
 
-int ft_set_option(t_info *info, char option){
+int	ft_set_option(t_info *info, char option){
 	if (option == 'p')
 		info->options = info->options | OPT_PRINT_STDIN;
 	else if (option == 'q')
