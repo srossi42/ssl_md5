@@ -6,7 +6,7 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:06:40 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/27 20:13:54 by srossi           ###   ########.fr       */
+/*   Updated: 2019/08/30 16:26:34 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,40 @@ void			ft_md5_free(struct s_md5_struct *md5_struct)
 	}
 }
 
+char			*ft_hash_append_zero(char *hash, uint64_t len)
+{
+	uint64_t	i;
+	char		*tmp;
+	char		*hash_def;
+
+	i = 0;
+	tmp = ft_strnew(len);
+	while (i < len)
+	{
+		tmp[i] = '0';
+		i++;
+	}
+	hash_def = ft_strjoin(tmp, hash);
+	ft_strdel(&tmp);
+	return (hash_def);
+}
+
 char			*ft_md5(char *str_to_hash, size_t size)
 {
 	struct s_md5_struct	md5_struct;
 	char				*hash;
 	char				*hash_def;
 	uint64_t			len;
-	uint64_t			i;
-	char				*tmp;
 
 	ft_md5_init(&md5_struct, str_to_hash, size);
 	ft_md5_padding(&md5_struct);
 	ft_md5_encode(&md5_struct);
 	hash = ft_md5_decode(&md5_struct);
 	len = 32 - ft_strlen(hash);
-	i = 0;
 	if (len > 0)
 	{
-		tmp = ft_strnew(len);
-		while (i < len)
-		{
-			tmp[i] = '0';
-			i++;
-		}
-		hash_def = ft_strjoin(tmp, hash);
+		hash_def = ft_hash_append_zero(hash, len);
 		ft_strdel(&hash);
-		ft_strdel(&tmp);
 		ft_md5_free(&md5_struct);
 		return (hash_def);
 	}
