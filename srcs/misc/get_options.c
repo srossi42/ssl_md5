@@ -34,17 +34,21 @@ static	int		ft_is_option(char c)
 
 
 
-static	void	ft_add_option(t_info *info, char option)
-{
-	if (option == 'p')
-		info->options = info->options | OPT_PRINT_STDIN;
-	else if (option == 'q')
-		info->options = info->options | OPT_QUIET;
-	else if (option == 'r')
-		info->options = info->options | OPT_REV;
-	else if (option == 's')
-		info->options = info->options | OPT_STRING;
-}
+//static	void	ft_add_option(t_info *info, char option)
+//{
+//	if (option == 'p')
+//		info->options = info->options | OPT_PRINT_STDIN;
+//	else if (option == 'q')
+//		info->options = info->options | OPT_QUIET;
+//	else if (option == 'r')
+//		info->options = info->options | OPT_REV;
+//	else if (option == 's')
+//		info->options = info->options | OPT_STRING;
+//  else if (option == 'c')
+//        info->options = info->options | STRING_READ;
+//    else if (option == 'f')
+//        info->options = info->options | FILE_READ;
+//}
 
 void			ft_get_options(char option, t_info *info)
 {

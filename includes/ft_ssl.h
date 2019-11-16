@@ -36,10 +36,15 @@
 # define OPT_QUIET (1 << 1)
 # define OPT_REV (1 << 2)
 # define OPT_STRING (1 << 3)
+# define STRING_READ (1 << 4)
+# define FILE_READ (1 << 5)
+# define FILE_READING (1 << 6)
+# define STRING_READING (1 << 7)
 
 typedef struct	    s_info
 {
     char            *algo_name;
+    int             p;
     char			options;
 //    char			*filename_to_hash;
     char			*string_to_hash;
@@ -76,7 +81,7 @@ int                 ft_set_option(t_info *info, char option);
 void	            ft_print_usage(void);
 void                ft_print_usage_option(t_info *info, char option);
 void                ft_free_info(t_info *info);
-void                ft_print_hash(t_info *info, int argc);
+void                ft_print_hash(t_info *info, int argc, int n);
 
 uint32_t            ft_reverse_bits(uint32_t value);
 uint32_t            ft_rotate_left(uint32_t x, uint32_t n);

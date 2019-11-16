@@ -21,11 +21,12 @@ void			ft_read_stdin(t_info *info)
 	stdin = NULL;
 	info->input_len = 0;
 	ft_bzero(buffer, 1025);
-	while ((char_count = read(STDIN_FILENO, buffer, 1025)) > 0)
+	while ((char_count = read(STDIN_FILENO, buffer, 1024)) > 0)
 	{
-		info->string_to_hash = ft_strnjoin( info->string_to_hash,
+		info->string_to_hash = ft_strnjoin(info->string_to_hash,
 				buffer, info->input_len, char_count);
 		info->input_len += char_count;
 		ft_bzero(buffer, 1025);
 	}
 }
+

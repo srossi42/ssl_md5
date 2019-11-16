@@ -15,5 +15,6 @@
 void	ft_init(t_info *info, char *options)
 {
 	info->options = 0;
+    info->options = 0;
 	ft_printf("options : %s\n", options);
 }

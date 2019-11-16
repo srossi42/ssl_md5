@@ -23,8 +23,11 @@ void ft_upper_string(char s[]) {
     }
 }
 
-void ft_print_hash(t_info *info, int argc){
-    ft_printf("%s\n", info->hash);
+void ft_print_hash(t_info *info, int argc, int n){
+    if (n)
+        ft_printf("%s\n", info->hash);
+    else
+        ft_printf("%s", info->hash);
 //    if (argc == 2)
 //        ft_printf("%s%s\n", info->string_to_hash, info->hash);
 //    else if (info->filename_to_hash){

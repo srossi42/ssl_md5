@@ -37,6 +37,14 @@ int	ft_set_option(t_info *info, char option){
 		info->options = info->options | OPT_REV;
 	else if (option == 's')
 		info->options = info->options | OPT_STRING;
+    else if (option == 'c')
+        info->options = info->options | STRING_READ;
+    else if (option == 'd')
+        info->options = info->options | STRING_READING;
+    else if (option == 'f')
+        info->options = info->options | FILE_READ;
+    else if (option == 'g')
+        info->options = info->options | FILE_READING;
 	else{
 		ft_print_usage();
 		return 0;

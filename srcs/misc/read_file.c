@@ -38,7 +38,7 @@ void			ft_read_from_file(t_info *info, char *filename_to_hash)
 
     fd = open(filename_to_hash, O_RDONLY);
     if (fd == -1){
-        ft_printf("Couldn't open file (%s): %s", info->current_arg, strerror(errno));
+        ft_printf("Couldn't open file '%s': %s.\n", filename_to_hash, strerror(errno));
         exit(EXIT_FAILURE);
     }
     buff_size = get_file_size(fd);
@@ -46,8 +46,8 @@ void			ft_read_from_file(t_info *info, char *filename_to_hash)
         buff_size /= 10;
     info->input_len = 0;
     if (!(buffer = (char *)ft_memalloc(sizeof(char) * (buff_size + 1)))){
-        printf("FAIL\n");
-        exit(0);
+        ft_printf("%s.\n", strerror(errno));
+        exit(EXIT_FAILURE);
     }
     while ((char_count = read(fd, buffer, buff_size)) > 0)
     {
