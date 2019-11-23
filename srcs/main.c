@@ -170,7 +170,7 @@ int		main(int argc, char **argv)
 					if (!(info.options & OPT_QUIET || info.options & OPT_REV))
                     {
 					    //tester pour savoir si 'opt -s" ON
-                        if (info.options & OPT_PRINT_STDIN & info.p <= 1){
+                        if (info.options & OPT_PRINT_STDIN & (info.p <= 1)){
                             ft_printf(".%s", info.string_to_hash);
                             info.p++;
                         }
