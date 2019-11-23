@@ -39,24 +39,26 @@ void			ft_read_from_file(t_info *info, char *filename_to_hash)
     fd = open(filename_to_hash, O_RDONLY);
     if (fd == -1){
         ft_printf("Couldn't open file '%s': %s.\n", filename_to_hash, strerror(errno));
-        exit(EXIT_FAILURE);
     }
-    buff_size = get_file_size(fd);
-    if (buff_size > 100)
-        buff_size /= 10;
-    info->input_len = 0;
-    if (!(buffer = (char *)ft_memalloc(sizeof(char) * (buff_size + 1)))){
-        ft_printf("%s.\n", strerror(errno));
-        exit(EXIT_FAILURE);
+    else {
+        buff_size = get_file_size(fd);
+        if (buff_size > 100)
+            buff_size /= 10;
+        info->input_len = 0;
+        if (!(buffer = (char *)ft_memalloc(sizeof(char) * (buff_size + 1)))){
+            ft_printf("%s.\n", strerror(errno));
+            exit(EXIT_FAILURE);
+        }
+        while ((char_count = read(fd, buffer, buff_size)) > 0)
+        {
+            info->string_to_hash = ft_strnjoin(info->string_to_hash, buffer, info->input_len, buff_size);
+            ft_bzero(buffer, buff_size);
+            info->input_len += char_count;
+        }
+        if (fd > 2)
+            close(fd);
+        if (buffer)
+            ft_strdel(&buffer);
     }
-    while ((char_count = read(fd, buffer, buff_size)) > 0)
-    {
-        info->string_to_hash = ft_strnjoin(info->string_to_hash, buffer, info->input_len, buff_size);
-        ft_bzero(buffer, buff_size);
-        info->input_len += char_count;
-    }
-    if (fd > 2)
-        close(fd);
-    if (buffer)
-        ft_strdel(&buffer);
+
 }
