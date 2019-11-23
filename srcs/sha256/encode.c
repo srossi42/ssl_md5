@@ -6,14 +6,14 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:30:32 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/09 16:20:52 by srossi           ###   ########.fr       */
+/*   Updated: 2019/11/23 17:51:01 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
 #include "../../includes/ft_sha256.h"
 
-void	ft_up_state(t_sha256_struct *sha256_struct, sha256_word_t w, uint32_t k)
+void	ft_up_state(t_sha256_struct *sha256_struct, t_sha256_word w, uint32_t k)
 {
 	uint32_t	t1;
 	uint32_t	t2;
@@ -55,7 +55,7 @@ void	ft_init_state(t_sha256_struct *sha256_struct)
 	SHA256_H = SHA256_H7;
 }
 
-void	ft_construct_w(sha256_word_t w[64], sha256_byte_t words[64])
+void	ft_construct_w(t_sha256_word w[64], t_sha256_byte words[64])
 {
 	int	t;
 	int	j;
@@ -82,10 +82,10 @@ void	ft_sha256_encode(t_sha256_struct *sha256_struct)
 {
 	int				i;
 	int				t;
-	sha256_word_t	w[64];
-	sha256_byte_t	words[64];
+	t_sha256_word	w[64];
+	t_sha256_byte	words[64];
 
-	ft_bzero(w, 64 * sizeof(sha256_word_t));
+	ft_bzero(w, 64 * sizeof(t_sha256_word));
 	i = 0;
 	sha256_struct->total_len += 8;
 	while (i < sha256_struct->total_len - 1)

@@ -6,7 +6,7 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 14:52:42 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/27 20:09:49 by srossi           ###   ########.fr       */
+/*   Updated: 2019/11/23 17:50:09 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	void	ft_md5_init_abcd(t_md5_struct *md5_struct)
 }
 
 static	void	ft_md5_update_abcd(t_md5_struct *md5_struct,
-		md5_byte_t word[4], int j, uint64_t i)
+		t_md5_byte word[4], int j, uint64_t i)
 {
 	int			tmp;
 	uint32_t	w_g;
@@ -72,8 +72,8 @@ void			ft_md5_encode(t_md5_struct *md5_struct)
 {
 	uint64_t	i;
 	uint64_t	j;
-	md5_byte_t	word[4];
-	md5_byte_t	words[64];
+	t_md5_byte	word[4];
+	t_md5_byte	words[64];
 
 	ft_bzero(word, 4);
 	i = 0;

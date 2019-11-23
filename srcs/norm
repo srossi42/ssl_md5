@@ -1,0 +1,47 @@
+Norme: ./norm
+Warning: Not a valid file
+Norme: ./norm_main
+Warning: Not a valid file
+Norme: ./norm_misc
+Warning: Not a valid file
+Norme: ./md5/decode.c
+Norme: ./md5/md5.c
+Norme: ./misc/free.c
+Norme: ./md5/padding.c
+Norme: ./misc/init.c
+Norme: ./misc/print.c
+Norme: ./misc/print_usage.c
+Norme: ./md5/encode.c
+Norme: ./misc/read_stdin.c
+Norme: ./misc/reverse_bits.c
+Norme: ./misc/read_file.c
+Error (line 32): function ft_read_from_file has 30 lines
+Error (line 41): line has 88 characters
+Error (line 55): line has 106 characters
+Norme: ./misc/strjoin_del.c
+Error (line 15): function ft_strjoin_del has 26 lines
+Norme: ./misc/strnjoin.c
+Norme: ./sha256/decode.c
+Norme: ./sha256/encode.c
+Norme: ./main.c
+Error (line 15): function ft_set_functions has 29 lines
+Error (line 15): declarations in ft_set_functions must be at the top of the function
+Error (line 18, col 8): tab_ptrs is instanciated during declaration
+Error (line 48): function ft_parse_opts has 45 lines
+Error (line 69): line has 84 characters
+Error (line 99): bad indentation
+Error (line 99): C++ comment
+Error (line 100): bad indentation
+Error (line 100): C++ comment
+Error (line 107): function main has 79 lines
+Error (line 138): line has 94 characters
+Error (line 147): line has 94 characters
+Error (line 153): line has 93 characters
+Error (line 157): line has 94 characters
+Error (line 163): line has 118 characters
+Norme: ./misc/options.c
+Norme: ./sha256/padding.c
+Norme: ./misc/rotate.c
+Norme: ./sha256/maj_ch.c
+Norme: ./sha256/sigma.c
+Norme: ./sha256/sha256.c

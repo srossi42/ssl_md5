@@ -1,0 +1,55 @@
+Norme: ./srcs/norm
+Warning: Not a valid file
+Norme: ./srcs/norm_main
+Warning: Not a valid file
+Norme: ./srcs/norm_misc
+Warning: Not a valid file
+Norme: ./srcs/md5/decode.c
+Norme: ./srcs/md5/md5.c
+Norme: ./srcs/misc/free.c
+Norme: ./srcs/misc/init.c
+Norme: ./srcs/md5/padding.c
+Norme: ./srcs/misc/options.c
+Norme: ./srcs/misc/print_usage.c
+Norme: ./srcs/md5/encode.c
+Norme: ./srcs/misc/read_stdin.c
+Norme: ./srcs/misc/reverse_bits.c
+Norme: ./srcs/misc/rotate.c
+Norme: ./srcs/misc/read_file.c
+Error (line 32): function ft_read_from_file has 30 lines
+Error (line 41): line has 88 characters
+Error (line 55): line has 106 characters
+Norme: ./srcs/misc/strjoin_del.c
+Norme: ./srcs/sha256/decode.c
+Norme: ./srcs/sha256/encode.c
+Norme: ./srcs/sha256/maj_ch.c
+Norme: ./srcs/sha256/padding.c
+Norme: ./srcs/sha256/sha256.c
+Norme: ./srcs/main.c
+Error (line 15): function ft_set_functions has 29 lines
+Error (line 15): declarations in ft_set_functions must be at the top of the function
+Error (line 18, col 8): tab_ptrs is instanciated during declaration
+Error (line 48): function ft_parse_opts has 45 lines
+Error (line 69): line has 84 characters
+Error (line 99): bad indentation
+Error (line 99): C++ comment
+Error (line 100): bad indentation
+Error (line 100): C++ comment
+Error (line 107): function main has 83 lines
+Error (line 107): declarations in main must be at the top of the function
+Error (line 107): declarations must be followed by one empty line in main
+Error (line 138): line has 94 characters
+Error (line 147): line has 94 characters
+Error (line 153): line has 93 characters
+Error (line 157): line has 94 characters
+Error (line 163): line has 118 characters
+Error (line 187): missing newline after while
+Error (line 187, col 1): missing space after while
+Error (line 187, col 9): no newline before block
+Error (line 188): bad indentation
+Error (line 188): must begin only by tabulations
+Error (line 189): bad indentation
+Error (line 189): must begin only by tabulations
+Norme: ./srcs/misc/print.c
+Norme: ./srcs/misc/strnjoin.c
+Norme: ./srcs/sha256/sigma.c

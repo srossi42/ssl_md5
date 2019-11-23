@@ -6,7 +6,7 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 14:34:35 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/09 16:23:51 by srossi           ###   ########.fr       */
+/*   Updated: 2019/11/23 17:47:09 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 # define MD5_H2		md5_struct->state[2]
 # define MD5_H3		md5_struct->state[3]
 
-static uint32_t	g_md5_r[64] = {
+static	uint32_t		g_md5_r[64] = {
 	7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
 	5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
 	4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
 	6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21
 };
 
-static uint32_t	g_md5_k[64] = {
+static	uint32_t		g_md5_k[64] = {
 	0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
 	0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
 	0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
@@ -50,24 +50,23 @@ static uint32_t	g_md5_k[64] = {
 	0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
 };
 
-typedef unsigned char   md5_byte_t; /* 8-bit byte */
-typedef unsigned int    md5_word_t; /* 32-bit word */
+typedef unsigned char	t_md5_byte;
+typedef unsigned int	t_md5_word;
 
-/* Contexte MD5. */
-typedef struct      s_md5_struct
+typedef struct			s_md5_struct
 {
-	md5_word_t		state[4];
-	md5_word_t		abcdfg[6];
-	md5_byte_t		buffer[64];
-	char			*input;
-	char	        *data;
-    uint64_t		input_len;
-    uint64_t		total_len;
-}                   t_md5_struct;
+	t_md5_word			state[4];
+	t_md5_word			abcdfg[6];
+	t_md5_byte			buffer[64];
+	char				*input;
+	char				*data;
+	uint64_t			input_len;
+	uint64_t			total_len;
+}						t_md5_struct;
 
-void	ft_md5_free(t_md5_struct *md5_struct);
-void	ft_md5_encode(t_md5_struct *md5_struct);
-void	ft_md5_padding(t_md5_struct *md5_struct);
-char	*ft_md5_decode(t_md5_struct *md5_struct);
+void					ft_md5_free(t_md5_struct *md5_struct);
+void					ft_md5_encode(t_md5_struct *md5_struct);
+void					ft_md5_padding(t_md5_struct *md5_struct);
+char					*ft_md5_decode(t_md5_struct *md5_struct);
 
 #endif
