@@ -12,14 +12,24 @@
 
 #include "ft_ssl.h"
 
+void    ft_print_invalid_command(char *command)
+{
+    int i;
+
+    i = 0;
+    ft_printf("ft_ssl: Error: '%s' is an invalid command.\n\n"
+              "Standard commands:\n\nMessage Digest commands:\n", command);
+    while (i < NB_FUNCTIONS)
+    {
+        ft_printf("%s\n", tab_ptrs[i].cmd);
+        i++;
+    }
+    ft_printf("\nCipher commands:\n");
+}
+
 int		ft_set_functions(t_ptrs *ptrs, int *argc, char **argv)
 {
 	int		i;
-	t_ptrs	tab_ptrs[] =
-	{
-		{"md5", &ft_md5, &ft_parse_opts},
-		{"sha256", &ft_sha256, &ft_parse_opts},
-	};
 
 	i = 0;
 	while (i < NB_FUNCTIONS)
@@ -33,16 +43,8 @@ int		ft_set_functions(t_ptrs *ptrs, int *argc, char **argv)
 		}
 		i++;
 	}
-	ft_printf("ft_ssl: Error: '%s' is an invalid command.\n\n"
-			"Standard commands:\n\nMessage Digest commands:\n", argv[1]);
-	i = 0;
-	while (i < 2)
-	{
-		ft_printf("%s\n", tab_ptrs[i].cmd);
-		i++;
-	}
-	ft_printf("\nCipher commands:\n");
-	return (0);
+    ft_print_invalid_command(argv[1]);
+	exit(EXIT_FAILURE);
 }
 
 void	ft_parse_opts(t_info *info, int argc, char **argv)

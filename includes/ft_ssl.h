@@ -37,9 +37,10 @@
 # define OPT_REV (1 << 2)
 # define OPT_STRING (1 << 3)
 # define STRING_READ (1 << 4)
-# define FILE_READ (1 << 5)G
+# define FILE_READ (1 << 5)
 # define FILE_READING (1 << 6)
 # define STRING_READING (1 << 7)
+
 
 typedef struct		s_info
 {
@@ -85,5 +86,11 @@ void				ft_read_from_file(t_info *info, char *filename_to_hash);
 void				ft_read_stdin(t_info *info);
 char				*ft_strnjoin(char *s1, char *s2, size_t len1, size_t len2);
 char				*ft_strjoin_del(char *s1, char *s2);
+
+static t_ptrs	tab_ptrs[NB_FUNCTIONS] = {
+        {"md5", ft_md5, ft_parse_opts},
+        {"sha256", ft_sha256, ft_parse_opts},
+};
+
 
 #endif
