@@ -48,6 +48,8 @@ int	ft_set_option(t_info *info, char option)
 		info->options = info->options | FILE_READ;
 	else if (option == 'g')
 		info->options = info->options | FILE_READING;
+    else if (option == 'h')
+        info->options2 = info->options2 | STDIN_READ;
 	else
 	{
 		ft_print_usage();

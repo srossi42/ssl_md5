@@ -28,6 +28,12 @@ SRC_NAME =	main.c \
             sha256/padding.c \
             sha256/sigma.c \
             sha256/maj_ch.c \
+            sha224/sha224.c \
+            sha224/encode.c \
+            sha224/decode.c \
+            sha224/padding.c \
+            sha224/sigma.c \
+            sha224/maj_ch.c \
             misc/free.c \
             misc/options.c \
             misc/print.c \
@@ -90,6 +96,7 @@ $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OBJ_PATH)/md5
 	@mkdir -p $(OBJ_PATH)/sha256
+	@mkdir -p $(OBJ_PATH)/sha224
 	@mkdir -p $(OBJ_PATH)/misc
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

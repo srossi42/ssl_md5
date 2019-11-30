@@ -27,8 +27,9 @@
 # include "../libft/includes/ft_printf.h"
 # include "ft_md5.h"
 # include "ft_sha256.h"
+# include "ft_sha224.h"
 
-# define NB_FUNCTIONS 2
+# define NB_FUNCTIONS 3
 # define BUFFER_SIZE 64
 
 # define OPTS_MD5_SHA256 "pqrs"
@@ -40,6 +41,7 @@
 # define FILE_READ (1 << 5)
 # define FILE_READING (1 << 6)
 # define STRING_READING (1 << 7)
+# define STDIN_READ (1 << 0)
 
 
 typedef struct		s_info
@@ -47,6 +49,7 @@ typedef struct		s_info
 	char			*algo_name;
 	int				p;
 	char			options;
+    char			options2;
 	char			*string_to_hash;
 	int				current_arg;
 	uint64_t		input_len;
@@ -70,6 +73,7 @@ typedef unsigned long int	t_uint4;
 
 char				*ft_md5(char *str_to_hash, size_t size);
 char				*ft_sha256(char *str_to_hash, size_t size);
+char				*ft_sha224(char *str_to_hash, size_t size);
 void				ft_parse_opts(t_info *info, int argc, char **arg);
 int					ft_is_valid_option(char option, char *options_list);
 int					ft_set_option(t_info *info, char option);
@@ -90,6 +94,7 @@ char				*ft_strjoin_del(char *s1, char *s2);
 static t_ptrs	tab_ptrs[NB_FUNCTIONS] = {
         {"md5", ft_md5, ft_parse_opts},
         {"sha256", ft_sha256, ft_parse_opts},
+        {"sha224", ft_sha224, ft_parse_opts},
 };
 
 
