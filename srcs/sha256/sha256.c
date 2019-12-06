@@ -6,7 +6,7 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 16:07:24 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/27 20:15:24 by srossi           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:22:33 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	ft_sha256_init(t_sha256_struct *sha256_struct, char *str, size_t size)
 	sha256_struct->input = ft_strdup(str);
 	sha256_struct->input_len = size;
 	sha256_struct->total_len = sha256_struct->input_len + 1;
-	SHA256_H0 = 0x6a09e667;
-	SHA256_H1 = 0xbb67ae85;
-	SHA256_H2 = 0x3c6ef372;
-	SHA256_H3 = 0xa54ff53a;
-	SHA256_H4 = 0x510e527f;
-	SHA256_H5 = 0x9b05688c;
-	SHA256_H6 = 0x1f83d9ab;
-	SHA256_H7 = 0x5be0cd19;
+	sha256_struct->state[0] = 0x6a09e667;
+	sha256_struct->state[1] = 0xbb67ae85;
+	sha256_struct->state[2] = 0x3c6ef372;
+	sha256_struct->state[3] = 0xa54ff53a;
+	sha256_struct->state[4] = 0x510e527f;
+	sha256_struct->state[5] = 0x9b05688c;
+	sha256_struct->state[6] = 0x1f83d9ab;
+	sha256_struct->state[7] = 0x5be0cd19;
 }
 
 void	ft_sha256_free(t_sha256_struct *sha256_struct)

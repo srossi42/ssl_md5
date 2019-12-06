@@ -6,7 +6,7 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 16:07:24 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/27 20:15:24 by srossi           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:22:06 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	ft_sha224_init(t_sha224_struct *sha224_struct, char *str, size_t size)
 	sha224_struct->input = ft_strdup(str);
 	sha224_struct->input_len = size;
 	sha224_struct->total_len = sha224_struct->input_len + 1;
-	SHA224_H0 = 0xc1059ed8;
-	SHA224_H1 = 0x367cd507;
-	SHA224_H2 = 0x3070dd17;
-	SHA224_H3 = 0xf70e5939;
-	SHA224_H4 = 0xffc00b31;
-	SHA224_H5 = 0x68581511;
-	SHA224_H6 = 0x64f98fa7;
-	SHA224_H7 = 0xbefa4fa4;
+	sha224_struct->state[0] = 0xc1059ed8;
+	sha224_struct->state[1] = 0x367cd507;
+	sha224_struct->state[2] = 0x3070dd17;
+	sha224_struct->state[3] = 0xf70e5939;
+	sha224_struct->state[4] = 0xffc00b31;
+	sha224_struct->state[5] = 0x68581511;
+	sha224_struct->state[6] = 0x64f98fa7;
+	sha224_struct->state[7] = 0xbefa4fa4;
 }
 
 void	ft_sha224_free(t_sha224_struct *sha224_struct)

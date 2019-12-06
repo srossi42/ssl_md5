@@ -37,6 +37,7 @@ SRC_NAME =	main.c \
             misc/free.c \
             misc/options.c \
             misc/print.c \
+            misc/print_error.c \
             misc/print_usage.c \
             misc/reverse_bits.c \
             misc/rotate.c \
@@ -44,6 +45,9 @@ SRC_NAME =	main.c \
             misc/read_stdin.c \
             misc/strnjoin.c \
             misc/strjoin_del.c \
+            misc/read_and_hash.c \
+            misc/str_to_upper.c \
+            misc/init.c \
 
 
 # OBJECTS
@@ -131,3 +135,5 @@ re:
 norme:
 	norminette $(SRC)
 	norminette ./includes/*.h
+	norminette $(LIB_PATH)/srcs
+	norminette $(LIB_PATH)/includes

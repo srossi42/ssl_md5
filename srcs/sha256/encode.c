@@ -6,7 +6,7 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:30:32 by srossi            #+#    #+#             */
-/*   Updated: 2019/11/23 17:51:01 by srossi           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:23:09 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,45 @@ void	ft_up_state(t_sha256_struct *sha256_struct, t_sha256_word w, uint32_t k)
 	uint32_t	t1;
 	uint32_t	t2;
 
-	t1 = SHA256_H + ft_bsig1(SHA256_E) + ft_ch(SHA256_E, SHA256_F, SHA256_G)
+	t1 = sha256_struct->abcdefgh[7] + ft_bsig1(sha256_struct->abcdefgh[4])
+		+ ft_ch(sha256_struct->abcdefgh[4], sha256_struct->abcdefgh[5]
+				, sha256_struct->abcdefgh[6])
 		+ k + w;
-	t2 = ft_bsig0(SHA256_A) + ft_maj(SHA256_A, SHA256_B, SHA256_C);
-	SHA256_H = SHA256_G;
-	SHA256_G = SHA256_F;
-	SHA256_F = SHA256_E;
-	SHA256_E = SHA256_D + t1;
-	SHA256_D = SHA256_C;
-	SHA256_C = SHA256_B;
-	SHA256_B = SHA256_A;
-	SHA256_A = t1 + t2;
+	t2 = ft_bsig0(sha256_struct->abcdefgh[0])
+		+ ft_maj(sha256_struct->abcdefgh[0], sha256_struct->abcdefgh[1],
+				sha256_struct->abcdefgh[2]);
+	sha256_struct->abcdefgh[7] = sha256_struct->abcdefgh[6];
+	sha256_struct->abcdefgh[6] = sha256_struct->abcdefgh[5];
+	sha256_struct->abcdefgh[5] = sha256_struct->abcdefgh[4];
+	sha256_struct->abcdefgh[4] = sha256_struct->abcdefgh[3] + t1;
+	sha256_struct->abcdefgh[3] = sha256_struct->abcdefgh[2];
+	sha256_struct->abcdefgh[2] = sha256_struct->abcdefgh[1];
+	sha256_struct->abcdefgh[1] = sha256_struct->abcdefgh[0];
+	sha256_struct->abcdefgh[0] = t1 + t2;
 }
 
 void	ft_up_hx(t_sha256_struct *sha256_struct)
 {
-	SHA256_H0 += SHA256_A;
-	SHA256_H1 += SHA256_B;
-	SHA256_H2 += SHA256_C;
-	SHA256_H3 += SHA256_D;
-	SHA256_H4 += SHA256_E;
-	SHA256_H5 += SHA256_F;
-	SHA256_H6 += SHA256_G;
-	SHA256_H7 += SHA256_H;
+	sha256_struct->state[0] += sha256_struct->abcdefgh[0];
+	sha256_struct->state[1] += sha256_struct->abcdefgh[1];
+	sha256_struct->state[2] += sha256_struct->abcdefgh[2];
+	sha256_struct->state[3] += sha256_struct->abcdefgh[3];
+	sha256_struct->state[4] += sha256_struct->abcdefgh[4];
+	sha256_struct->state[5] += sha256_struct->abcdefgh[5];
+	sha256_struct->state[6] += sha256_struct->abcdefgh[6];
+	sha256_struct->state[7] += sha256_struct->abcdefgh[7];
 }
 
 void	ft_init_state(t_sha256_struct *sha256_struct)
 {
-	SHA256_A = SHA256_H0;
-	SHA256_B = SHA256_H1;
-	SHA256_C = SHA256_H2;
-	SHA256_D = SHA256_H3;
-	SHA256_E = SHA256_H4;
-	SHA256_F = SHA256_H5;
-	SHA256_G = SHA256_H6;
-	SHA256_H = SHA256_H7;
+	sha256_struct->abcdefgh[0] = sha256_struct->state[0];
+	sha256_struct->abcdefgh[1] = sha256_struct->state[1];
+	sha256_struct->abcdefgh[2] = sha256_struct->state[2];
+	sha256_struct->abcdefgh[3] = sha256_struct->state[3];
+	sha256_struct->abcdefgh[4] = sha256_struct->state[4];
+	sha256_struct->abcdefgh[5] = sha256_struct->state[5];
+	sha256_struct->abcdefgh[6] = sha256_struct->state[6];
+	sha256_struct->abcdefgh[7] = sha256_struct->state[7];
 }
 
 void	ft_construct_w(t_sha256_word w[64], t_sha256_byte words[64])

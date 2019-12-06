@@ -13,24 +13,6 @@
 #ifndef FT_SHA224_H
 # define FT_SHA224_H
 
-# define SHA224_A		sha224_struct->abcdefgh[0]
-# define SHA224_B		sha224_struct->abcdefgh[1]
-# define SHA224_C		sha224_struct->abcdefgh[2]
-# define SHA224_D		sha224_struct->abcdefgh[3]
-# define SHA224_E		sha224_struct->abcdefgh[4]
-# define SHA224_F		sha224_struct->abcdefgh[5]
-# define SHA224_G		sha224_struct->abcdefgh[6]
-# define SHA224_H		sha224_struct->abcdefgh[7]
-
-# define SHA224_H0		sha224_struct->state[0]
-# define SHA224_H1		sha224_struct->state[1]
-# define SHA224_H2		sha224_struct->state[2]
-# define SHA224_H3		sha224_struct->state[3]
-# define SHA224_H4		sha224_struct->state[4]
-# define SHA224_H5		sha224_struct->state[5]
-# define SHA224_H6		sha224_struct->state[6]
-# define SHA224_H7		sha224_struct->state[7]
-
 static	uint32_t		g_sha224_k[64] = {
 	0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,
 	0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
@@ -63,11 +45,11 @@ void					ft_sha224_encode(t_sha224_struct *sha224_struct);
 char					*ft_sha224_decode(t_sha224_struct *sha224_struct);
 void					ft_sha224_padding(t_sha224_struct *sha224_struct);
 void					ft_sha224_append_len(t_sha224_struct *sha224_struct);
-uint32_t				ft_ch(uint32_t x, uint32_t y, uint32_t z);
-uint32_t				ft_maj(uint32_t x, uint32_t y, uint32_t z);
-uint32_t				ft_bsig0(uint32_t x);
-uint32_t				ft_bsig1(uint32_t x);
-uint32_t				ft_ssig0(uint32_t x);
-uint32_t				ft_ssig1(uint32_t x);
+uint32_t				ft_sha224_ch(uint32_t x, uint32_t y, uint32_t z);
+uint32_t				ft_sha224_maj(uint32_t x, uint32_t y, uint32_t z);
+uint32_t				ft_sha224_bsig0(uint32_t x);
+uint32_t				ft_sha224_bsig1(uint32_t x);
+uint32_t				ft_sha224_ssig0(uint32_t x);
+uint32_t				ft_sha224_ssig1(uint32_t x);
 
 #endif

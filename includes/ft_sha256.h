@@ -13,24 +13,6 @@
 #ifndef FT_SHA256_H
 # define FT_SHA256_H
 
-# define SHA256_A		sha256_struct->abcdefgh[0]
-# define SHA256_B		sha256_struct->abcdefgh[1]
-# define SHA256_C		sha256_struct->abcdefgh[2]
-# define SHA256_D		sha256_struct->abcdefgh[3]
-# define SHA256_E		sha256_struct->abcdefgh[4]
-# define SHA256_F		sha256_struct->abcdefgh[5]
-# define SHA256_G		sha256_struct->abcdefgh[6]
-# define SHA256_H		sha256_struct->abcdefgh[7]
-
-# define SHA256_H0		sha256_struct->state[0]
-# define SHA256_H1		sha256_struct->state[1]
-# define SHA256_H2		sha256_struct->state[2]
-# define SHA256_H3		sha256_struct->state[3]
-# define SHA256_H4		sha256_struct->state[4]
-# define SHA256_H5		sha256_struct->state[5]
-# define SHA256_H6		sha256_struct->state[6]
-# define SHA256_H7		sha256_struct->state[7]
-
 static	uint32_t		g_sha256_k[64] = {
 	0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,
 	0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,

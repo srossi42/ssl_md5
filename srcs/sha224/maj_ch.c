@@ -12,12 +12,12 @@
 
 #include "../../includes/ft_ssl.h"
 
-uint32_t	ft_ch(uint32_t x, uint32_t y, uint32_t z)
+uint32_t	ft_sha224_ch(uint32_t x, uint32_t y, uint32_t z)
 {
 	return ((x & y) ^ ((~x) & z));
 }
 
-uint32_t	ft_maj(uint32_t x, uint32_t y, uint32_t z)
+uint32_t	ft_sha224_maj(uint32_t x, uint32_t y, uint32_t z)
 {
 	return ((x & y) ^ (x & z) ^ (y & z));
 }

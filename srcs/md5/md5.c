@@ -6,7 +6,7 @@
 /*   By: srossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:06:40 by srossi            #+#    #+#             */
-/*   Updated: 2019/08/30 16:26:34 by srossi           ###   ########.fr       */
+/*   Updated: 2019/12/02 17:23:40 by srossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static	void	ft_md5_init(t_md5_struct *md5_struct, char *str, size_t size)
 	md5_struct->input = str;
 	md5_struct->input_len = size;
 	md5_struct->total_len = md5_struct->input_len + 1;
-	MD5_H0 = 0x67452301;
-	MD5_H1 = 0xefcdab89;
-	MD5_H2 = 0x98badcfe;
-	MD5_H3 = 0x10325476;
+	md5_struct->state[0] = 0x67452301;
+	md5_struct->state[1] = 0xefcdab89;
+	md5_struct->state[2] = 0x98badcfe;
+	md5_struct->state[3] = 0x10325476;
 }
 
 void			ft_md5_free(struct s_md5_struct *md5_struct)

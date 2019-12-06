@@ -13,17 +13,6 @@
 #ifndef FT_MD5_H
 # define FT_MD5_H
 
-# define MD5_A		md5_struct->abcdfg[0]
-# define MD5_B		md5_struct->abcdfg[1]
-# define MD5_C		md5_struct->abcdfg[2]
-# define MD5_D		md5_struct->abcdfg[3]
-# define MD5_F		md5_struct->abcdfg[4]
-# define MD5_G		md5_struct->abcdfg[5]
-# define MD5_H0		md5_struct->state[0]
-# define MD5_H1		md5_struct->state[1]
-# define MD5_H2		md5_struct->state[2]
-# define MD5_H3		md5_struct->state[3]
-
 static	uint32_t		g_md5_r[64] = {
 	7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
 	5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
